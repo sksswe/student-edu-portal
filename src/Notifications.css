@@ -1,0 +1,52 @@
+.notifications-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .notifications-container h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .notifications-container p {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  
+  .notification-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .notification-item {
+    background-color: #f8f9fa;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .notification-message {
+    font-weight: bold;
+  }
+  
+  .notification-date {
+    color: #666666;
+    font-size: 14px;
+  }
+  
+  .back-link {
+    display: inline-block;
+    margin-top: 20px;
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  .back-link:hover {
+    text-decoration: underline;
+  }

@@ -1,0 +1,123 @@
+/* Reset default margin and padding to avoid unwanted spacing */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Ensure the HTML and body take up the full viewport */
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
+/* Style the navigation bar to fill the full width */
+.navbar {
+    width: 100%;
+    background-color: #28a745; /* Green color */
+    margin: 0;
+    padding: 0;
+    position: fixed; /* Keep the navbar fixed at the top */
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000; /* Ensure the navbar stays above other content */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Ensure the navbar container is full width */
+.navbar .container-fluid {
+    max-width: 100%;
+    padding: 0 20px; /* Optional padding */
+}
+
+/* Navbar links */
+.navbar-nav .nav-link {
+    color: white;
+}
+
+/* Ensure the container takes up the full viewport dynamically */
+.home-container {
+    background: url('https://media.istockphoto.com/id/1365149156/photo/woman-designer-working-from-home-having-meeting-online-student-girl-studying-in-her-room.jpg?s=1024x1024&w=is&k=20&c=W63JPFfTPT4pfbw5hc9OQDTmsnyW3vIcSLdwjFjQSaU=') no-repeat center center fixed;
+    background-size: cover;
+    height: 100vh; /* Full viewport height */
+    width: 100vw; /* Full viewport width */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Center content vertically */
+    text-align: center;
+}
+
+/* Center and style the content within the container */
+.home-content {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    width: 90%; /* Responsive width */
+    max-width: 600px; /* Prevents it from getting too wide on larger screens */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: -60px; /* Adjust margin to center content below fixed navbar */
+}
+
+/* Style the heading */
+h1 {
+    color: #333333;
+    margin-bottom: 20px;
+    font-size: clamp(1.5rem, 4vw, 2.5rem); /* Responsive font size */
+}
+
+/* Style the lead paragraph */
+.lead {
+    color: #555555;
+    margin-bottom: 40px;
+    font-size: clamp(1rem, 2.5vw, 1.2rem); /* Responsive font size */
+}
+
+/* Style the buttons */
+.button-group .btn {
+    background-color: #007bff;
+    border: none;
+    padding: 12px 24px;
+    color: white;
+    cursor: pointer;
+    font-size: 1rem;
+    border-radius: 5px;
+    margin: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.button-group .btn:hover {
+    background-color: #0056b3;
+}
+
+/* Style the secondary button */
+.button-group .btn-secondary {
+    background-color: #63ffca;
+    border: none;
+    padding: 12px 24px;
+    color: white;
+    cursor: pointer;
+    font-size: 1rem;
+    border-radius: 5px;
+    margin: 10px;
+    transition: background-color 0.3s ease;
+}
+
+/* Change the secondary button color on hover */
+.button-group .btn-secondary:hover {
+    background-color: #47ffb3;
+}
+
+/* Ensure proper spacing on smaller devices */
+@media (max-width: 768px) {
+    .home-content {
+        padding: 20px;
+    }
+}
