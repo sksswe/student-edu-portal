@@ -87,7 +87,7 @@ function SignUp() {
       </div>
       <div className="signup-right">
         <img
-          src="https://media.istockphoto.com/id/1365149156/photo/woman-designer-working-from-home-having-meeting-online-student-girl-studying-in-her-room.jpg?s=1024x1024&w=is&k=20&c=W63JPFfTPT4pfbw5hc9OQDTmsnyW3vIcSLdwjFjQSaU="
+          src="https://wallpapers.com/images/high/young-girl-learning-how-to-draw-dzqormhxkpuojcj0.webp"
           alt="Signup Visual"
           className="signup-image"
         />

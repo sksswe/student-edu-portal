@@ -25,7 +25,7 @@ function SignIn() {
     <div className="signin-container">
       <div className="signin-left">
         <img
-          src="https://media.istockphoto.com/id/1365149156/photo/woman-designer-working-from-home-having-meeting-online-student-girl-studying-in-her-room.jpg?s=1024x1024&w=is&k=20&c=W63JPFfTPT4pfbw5hc9OQDTmsnyW3vIcSLdwjFjQSaU="
+          src="https://e1.pxfuel.com/desktop-wallpaper/724/18/desktop-wallpaper-7-studying-study-boy.jpg"
           alt="Signin Visual"
           className="signin-image"
         />
