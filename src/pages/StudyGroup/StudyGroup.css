@@ -1,0 +1,53 @@
+.study-group-card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .study-group-card h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #333333;
+  }
+  
+  .study-group-card p {
+    font-size: 14px;
+    color: #666666;
+    margin-bottom: 20px;
+  }
+  
+  .button-container {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+  }
+  
+  .button-container .btn {
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  
+  .button-container .btn-primary {
+    background-color: #007bff;
+    color: white;
+    border: none;
+  }
+  
+  .button-container .btn-primary:hover {
+    background-color: #0056b3;
+  }
+  
+  .button-container .btn-secondary {
+    background-color: #6c757d;
+    color: white;
+    border: none;
+  }
+  
+  .button-container .btn-secondary:hover {
+    background-color: #5a6268;
+  }

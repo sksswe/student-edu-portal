@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { useNavigate, Link } from 'react-router-dom';
 import './SignIn.css';
 
 function SignIn() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [role, setRole] = useState('user'); // 'user' or 'admin'
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
@@ -14,7 +14,8 @@ function SignIn() {
       // Simulate a successful login
       setError('');
       localStorage.setItem('isAuthenticated', 'true'); // Set authentication status
-      navigate('/dashboard'); // Redirect to dashboard
+      localStorage.setItem('role', role); // Save the user's role
+      navigate(role === 'admin' ? '/admin-dashboard' : '/user-dashboard'); // Redirect based on role
     } else {
       setError('Please fill in all fields');
     }
@@ -24,7 +25,7 @@ function SignIn() {
     <div className="signin-container">
       <div className="signin-left">
         <img
-          src="https://e1.pxfuel.com/desktop-wallpaper/724/18/desktop-wallpaper-7-studying-study-boy.jpg"
+          src="https://media.istockphoto.com/id/1365149156/photo/woman-designer-working-from-home-having-meeting-online-student-girl-studying-in-her-room.jpg?s=1024x1024&w=is&k=20&c=W63JPFfTPT4pfbw5hc9OQDTmsnyW3vIcSLdwjFjQSaU="
           alt="Signin Visual"
           className="signin-image"
         />
@@ -48,6 +49,28 @@ function SignIn() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
+          <div className="role-selection">
+            <label>
+              <input
+                type="radio"
+                name="role"
+                value="user"
+                checked={role === 'user'}
+                onChange={() => setRole('user')}
+              />
+              User
+            </label>
+            <label>
+              <input
+                type="radio"
+                name="role"
+                value="admin"
+                checked={role === 'admin'}
+                onChange={() => setRole('admin')}
+              />
+              Admin
+            </label>
+          </div>
           <button className="btn btn-primary w-100" onClick={handleSignIn}>
             Sign In
           </button>

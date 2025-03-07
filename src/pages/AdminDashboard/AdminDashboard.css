@@ -1,0 +1,46 @@
+.admin-dashboard {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .admin-dashboard h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .signout-button {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+  }
+  
+  .signout-button:hover {
+    background-color: #c82333;
+  }
+  
+  .admin-features {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+  
+  .admin-link {
+    display: block;
+    background-color: #007bff;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-decoration: none;
+    text-align: center;
+    font-size: 16px;
+  }
+  
+  .admin-link:hover {
+    background-color: #0056b3;
+  }

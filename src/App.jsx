@@ -1,17 +1,11 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Home from './Home';
-import SignUp from './SignUp';
-import SignIn from './SignIn';
-import Guidelines from './Guidelines';
-import Dashboard from './Dashboard';
-import CreateStudyGroup from './CreateStudyGroup';
-import JoinStudyGroup from './JoinStudyGroup';
-import GroupChat from './GroupChat';
-import ShareFiles from './ShareFiles';
-import ViewFiles from './ViewFiles';
-import Notifications from './Notifications';
-import ReportIssues from './ReportIssues';
-import ProtectedRoute from './ProtectedRoute'; // Import the ProtectedRoute component
+import Home from './pages/Home/Home';
+import SignUp from './pages/SignUp/SignUp';
+import SignIn from './pages/SignIn/SignIn';
+import AdminDashboard from './pages/AdminDashboard/AdminDashboard';
+import UserDashboard from './pages/UserDashboard/UserDashboard';
+import CheckReports from './pages/CheckReports/CheckReports';
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   return (
@@ -19,21 +13,34 @@ function App() {
       <Routes>
         {/* Public Routes */}
         <Route path="/" element={<Home />} />
-        <Route path="/guidelines" element={<Guidelines />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
 
         {/* Protected Routes */}
-        <Route element={<ProtectedRoute />}>
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/create-study-group" element={<CreateStudyGroup />} />
-          <Route path="/join-study-group" element={<JoinStudyGroup />} />
-          <Route path="/group-chat" element={<GroupChat />} />
-          <Route path="/share-files" element={<ShareFiles />} />
-          <Route path="/view-files" element={<ViewFiles />} />
-          <Route path="/notifications" element={<Notifications />} />
-          <Route path="/report-issues" element={<ReportIssues />} />
-        </Route>
+        <Route
+          path="/admin-dashboard"
+          element={
+            <ProtectedRoute role="admin">
+              <AdminDashboard />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/user-dashboard"
+          element={
+            <ProtectedRoute role="user">
+              <UserDashboard />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/check-reports"
+          element={
+            <ProtectedRoute role="admin">
+              <CheckReports />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </Router>
   );
