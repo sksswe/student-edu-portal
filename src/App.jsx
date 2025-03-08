@@ -5,6 +5,10 @@ import SignIn from './pages/SignIn/SignIn';
 import AdminDashboard from './pages/AdminDashboard/AdminDashboard';
 import UserDashboard from './pages/UserDashboard/UserDashboard';
 import CheckReports from './pages/CheckReports/CheckReports';
+import ReportIssues from './pages/ReportIssues/ReportIssues';
+import Notifications from './pages/Notifications/Notifications';
+import ShareFiles from './pages/ShareFiles/ShareFiles';
+import StudyGroup from './pages/StudyGroup/StudyGroup';
 import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
@@ -38,6 +42,38 @@ function App() {
           element={
             <ProtectedRoute role="admin">
               <CheckReports />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/report-issues"
+          element={
+            <ProtectedRoute role="admin">
+              <ReportIssues />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/notifications"
+          element={
+            <ProtectedRoute role="admin">
+              <Notifications />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/share-files"
+          element={
+            <ProtectedRoute role="admin">
+              <ShareFiles />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/study-group"
+          element={
+            <ProtectedRoute role="admin">
+              <StudyGroup />
             </ProtectedRoute>
           }
         />

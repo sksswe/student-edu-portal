@@ -1,7 +1,7 @@
 import React from 'react';
-import { Navigate, Outlet } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
-const ProtectedRoute = ({ role }) => {
+const ProtectedRoute = ({ children, role }) => {
   const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
   const userRole = localStorage.getItem('role');
 
@@ -21,7 +21,7 @@ const ProtectedRoute = ({ role }) => {
   }
 
   console.log('User is authenticated and role matches. Rendering the component.');
-  return <Outlet />; // Render the child routes if authenticated and role matches
+  return children; // Render the child component if authenticated and role matches
 };
 
 export default ProtectedRoute;

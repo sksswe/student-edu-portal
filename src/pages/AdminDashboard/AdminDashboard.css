@@ -1,46 +1,152 @@
+/* General Styles */
 .admin-dashboard {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-    text-align: center;
+  display: flex;
+  min-height: 100vh; /* Ensure it spans the viewport height */
+  font-family: 'Arial', sans-serif;
+  background-color: #f5f6fa;
+}
+
+/* Header */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #2c3e50;
+  color: white;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: center; /* Center the text */
+  align-items: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.header h2 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  top: 60px; /* Adjust based on header height */
+  left: 0;
+  width: 300px; /* Sidebar width */
+  height: calc(100vh - 60px); /* Full height minus header */
+  background-color: #34495e;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  z-index: 1; /* Ensure sidebar is above the background image */
+}
+
+.sidebar-link {
+  margin-bottom: 15px;
+  padding: 12px 15px;
+  text-decoration: none;
+  color: #ecf0f1;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.sidebar-link:hover {
+  background-color: #2c3e50;
+  transform: translateX(5px);
+}
+
+.link-icon {
+  margin-right: 10px;
+  font-size: 18px;
+}
+
+/* Sign Out Button */
+.signout-button {
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  padding: 8px 16px; /* Smaller padding */
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px; /* Smaller font size */
+  transition: background-color 0.3s ease;
+  margin-top: auto; /* Push the button to the bottom */
+  width: 100%; /* Full width */
+  text-align: center; /* Center the text */
+}
+
+.signout-button:hover {
+  background-color: #c0392b;
+}
+
+/* Main Content */
+.admin-main-content {
+  margin-left: 300px; /* Match sidebar width */
+  margin-top: 60px; /* Match header height */
+  padding: 30px;
+  width: calc(100vw - 300px); /* Take up remaining screen width minus sidebar */
+  min-height: calc(100vh - 60px); /* Full height minus header */
+  background-color: #ffffff;
+  background-image: url('https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') !important; /* Admin Dashboard image */
+  background-size: cover; /* Ensure the image covers the full area */
+  background-position: center; /* Center the background image */
+  background-repeat: no-repeat; /* Prevent tiling */
+  position: relative;
+  overflow: hidden; /* Avoid any overflow issues */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center content vertically */
+  align-items: center; /* Center content horizontally */
+  text-align: center; /* Center text */
+}
+
+.admin-main-content h1 {
+  font-size: 28px;
+  color: #000000; /* Black color */
+  margin-bottom: 15px;
+  position: relative;
+  z-index: 1; /* Ensure text is above the background image */
+}
+
+.admin-main-content p {
+  font-size: 16px;
+  color: #000000; /* Black color */
+  position: relative;
+  z-index: 1; /* Ensure text is above the background image */
+}
+
+/* Overlay for readability */
+.admin-main-content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.6); /* Optional semi-transparent overlay */
+  z-index: 0; /* Place the overlay behind the text */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%; /* Full width on small screens */
+    height: auto; /* Auto height */
+    position: static; /* Remove fixed positioning */
+    box-shadow: none; /* Remove shadow */
   }
-  
-  .admin-dashboard h1 {
-    font-size: 24px;
-    margin-bottom: 20px;
+
+  .admin-main-content {
+    margin-left: 0; /* Remove sidebar margin */
+    width: 100%; /* Full width */
+    min-height: calc(100vh - 120px); /* Adjust height for stacked layout */
   }
-  
-  .signout-button {
-    background-color: #dc3545;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-bottom: 20px;
+
+  .header {
+    position: static; /* Remove fixed positioning */
   }
-  
-  .signout-button:hover {
-    background-color: #c82333;
-  }
-  
-  .admin-features {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-  }
-  
-  .admin-link {
-    display: block;
-    background-color: #007bff;
-    color: white;
-    padding: 20px;
-    border-radius: 10px;
-    text-decoration: none;
-    text-align: center;
-    font-size: 16px;
-  }
-  
-  .admin-link:hover {
-    background-color: #0056b3;
-  }
+}

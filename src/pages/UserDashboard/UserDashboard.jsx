@@ -15,33 +15,43 @@ function UserDashboard() {
 
   return (
     <div className="user-dashboard">
-      <h1>User Dashboard</h1>
-      <button onClick={handleSignOut} className="signout-button">
-        Sign Out
-      </button>
-      <div className="user-features">
-        <Link to="/create-study-group" className="user-link">
-          Create Study Group
+      {/* Header */}
+      <header className="header">
+        <h2>Welcome, User</h2>
+      </header>
+
+      {/* Sidebar */}
+      <nav className="sidebar">
+        <Link to="/study-group" className="sidebar-link">
+          <span className="link-icon">📚</span> Study Group
         </Link>
-        <Link to="/join-study-group" className="user-link">
-          Join Study Group
+        <Link to="/group-chat" className="sidebar-link">
+          <span className="link-icon">💬</span> Group Chat
         </Link>
-        <Link to="/group-chat" className="user-link">
-          Group Chat
+        <Link to="/share-files" className="sidebar-link">
+          <span className="link-icon">📂</span> Share Files
         </Link>
-        <Link to="/share-files" className="user-link">
-          Share Files
+        <Link to="/view-files" className="sidebar-link">
+          <span className="link-icon">👀</span> View Files
         </Link>
-        <Link to="/view-files" className="user-link">
-          View Files
+        <Link to="/notifications" className="sidebar-link">
+          <span className="link-icon">🔔</span> Notifications
         </Link>
-        <Link to="/notifications" className="user-link">
-          Notifications
+        <Link to="/report-issues" className="sidebar-link">
+          <span className="link-icon">⚠️</span> Report Issues
         </Link>
-        <Link to="/report-issues" className="user-link">
-          Report Issues
-        </Link>
-      </div>
+
+        {/* Sign Out Button */}
+        <button onClick={handleSignOut} className="signout-button">
+          Sign Out
+        </button>
+      </nav>
+
+      {/* Main Content */}
+      <main className="user-main-content">
+        <h1>User Dashboard</h1>
+        <p>Select an option from the menu to get started.</p>
+      </main>
     </div>
   );
 }
