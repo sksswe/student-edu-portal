@@ -47,7 +47,17 @@
 
 /* Style the form controls */
 .signup-content .form-control {
-  margin-bottom: 20px;
+  margin-bottom: 15px; /* Adjusted spacing */
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+  font-size: 16px;
+}
+
+.signup-content .form-control:focus {
+  border-color: #007bff;
+  outline: none;
 }
 
 /* Style the role selection */
@@ -62,6 +72,23 @@
   display: flex;
   align-items: center;
   gap: 5px;
+}
+
+/* Style the sign-up button */
+.signup-content .btn {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.signup-content .btn:hover {
+  background-color: #0056b3;
 }
 
 /* Style the footer */

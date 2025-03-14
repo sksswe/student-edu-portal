@@ -1,48 +1,116 @@
-.report-issues-container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    text-align: center;
-  }
-  
-  .report-issues-container h1 {
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
-  
-  .report-issues-container p {
-    font-size: 16px;
-    margin-bottom: 20px;
-  }
-  
-  .report-issues-container textarea {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .report-issues-container button {
-    background-color: #dc3545;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .report-issues-container button:hover {
-    background-color: #c82333;
-  }
-  
-  .back-link {
-    display: inline-block;
-    margin-top: 20px;
-    color: #007bff;
-    text-decoration: none;
-  }
-  
-  .back-link:hover {
-    text-decoration: underline;
-  }
+/* Modal Overlay */
+.report-issues-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure it's above other content */
+}
+
+/* Modal Content */
+.report-issues-modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 400px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+}
+
+/* Modal Title */
+.report-issues-modal-content h3 {
+  margin-top: 0;
+  font-size: 24px;
+  text-align: center;
+  color: #2c3e50; /* Dark blue for the title */
+}
+
+/* Form Group (Input Fields and Labels) */
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #34495e; /* Dark gray for labels */
+}
+
+/* Input Fields and Textarea */
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  color: white; /* White text color */
+  background-color: black; /* Black background */
+}
+
+/* Placeholder Text Color */
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #ccc; /* Light gray placeholder text */
+}
+
+.form-group textarea {
+  resize: vertical; /* Allow vertical resizing */
+  height: 100px; /* Default height */
+}
+
+/* Form Buttons */
+.form-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.submit-button,
+.close-button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submit-button {
+  background-color: #3498db; /* Blue for submit button */
+  color: white;
+}
+
+.submit-button:hover {
+  background-color: #2980b9; /* Darker blue on hover */
+}
+
+.close-button {
+  background-color: #e74c3c; /* Red for close button */
+  color: white;
+}
+
+.close-button:hover {
+  background-color: #c0392b; /* Darker red on hover */
+}
+
+/* Submission Message */
+.submission-message {
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: #e8f5e9; /* Light green for success */
+  color: #2e7d32; /* Dark green for success */
+}
+
+.submission-message.error {
+  background-color: #ffebee; /* Light red for error */
+  color: #c62828; /* Dark red for error */
+}

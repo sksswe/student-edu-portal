@@ -31,12 +31,6 @@ function AdminDashboard() {
         <Link to="/view-registrations" className="sidebar-link">
           <span className="link-icon">📝</span> View Registrations
         </Link>
-        <Link to="/post-notice" className="sidebar-link">
-          <span className="link-icon">📢</span> Post Notice
-        </Link>
-        <Link to="/view-notices" className="sidebar-link">
-          <span className="link-icon">📜</span> View Notices
-        </Link>
 
         {/* Sign Out Button */}
         <button onClick={handleSignOut} className="signout-button">

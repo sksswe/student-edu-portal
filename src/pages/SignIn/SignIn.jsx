@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import './SignIn.css';
 
 function SignIn() {
+  const [id, setId] = useState(''); // New state for ID
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [role, setRole] = useState('user'); // 'user' or 'admin'
@@ -10,11 +11,12 @@ function SignIn() {
   const navigate = useNavigate();
 
   const handleSignIn = () => {
-    if (email && password) {
+    if (id && email && password) { // Check if ID is filled
       // Simulate a successful login
       setError('');
       localStorage.setItem('isAuthenticated', 'true'); // Set authentication status
       localStorage.setItem('role', role); // Save the user's role
+      localStorage.setItem('id', id); // Save the user's ID
       navigate(role === 'admin' ? '/admin-dashboard' : '/user-dashboard'); // Redirect based on role
     } else {
       setError('Please fill in all fields');
@@ -35,6 +37,13 @@ function SignIn() {
           <h1>Sign In</h1>
           <p>Welcome back! Please sign in to continue.</p>
           {error && <div className="alert alert-danger">{error}</div>}
+          <input
+            type="text"
+            className="form-control my-2"
+            placeholder="ID"
+            value={id}
+            onChange={(e) => setId(e.target.value)}
+          />
           <input
             type="email"
             className="form-control my-2"

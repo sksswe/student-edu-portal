@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import './SignUp.css';
 
 function SignUp() {
+  const [id, setId] = useState(''); // New state for ID
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -11,13 +12,14 @@ function SignUp() {
   const navigate = useNavigate();
 
   const handleSignUp = () => {
-    if (email && password && confirmPassword) {
+    if (id && email && password && confirmPassword) { // Check if ID is filled
       if (password === confirmPassword) {
         // Simulate a successful sign-up
         setError('');
         localStorage.setItem('isAuthenticated', 'true'); // Set authentication status
         localStorage.setItem('role', role); // Save the user's role
-        navigate(role === 'admin' ? '/admin-dashboard' : '/user-dashboard'); // Redirect based on role
+        localStorage.setItem('id', id); // Save the user's ID
+        navigate('/signin'); // Redirect to the Sign In page
       } else {
         setError('Passwords do not match');
       }
@@ -33,6 +35,13 @@ function SignUp() {
           <h1>Sign Up</h1>
           <p>Choose your role and create an account.</p>
           {error && <div className="alert alert-danger">{error}</div>}
+          <input
+            type="text"
+            className="form-control my-2"
+            placeholder="ID"
+            value={id}
+            onChange={(e) => setId(e.target.value)}
+          />
           <input
             type="email"
             className="form-control my-2"
