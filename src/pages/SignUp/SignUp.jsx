@@ -1,31 +1,47 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import OTP from '../OTP/OTP'; // Import the OTP component
 import './SignUp.css';
 
 function SignUp() {
-  const [id, setId] = useState(''); // New state for ID
+  const [id, setId] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [role, setRole] = useState('user'); // 'user' or 'admin'
+  const [role, setRole] = useState('user');
   const [error, setError] = useState('');
+  const [showOTP, setShowOTP] = useState(false); // State to control OTP popup visibility
+  const [generatedOTP, setGeneratedOTP] = useState(''); // State to store the generated OTP
   const navigate = useNavigate();
 
+  const generateOTP = () => {
+    const otp = Math.floor(1000 + Math.random() * 9000); // Generate a 4-digit OTP
+    setGeneratedOTP(otp.toString());
+    return otp.toString();
+  };
+
   const handleSignUp = () => {
-    if (id && email && password && confirmPassword) { // Check if ID is filled
+    if (id && email && password && confirmPassword) {
       if (password === confirmPassword) {
-        // Simulate a successful sign-up
         setError('');
-        localStorage.setItem('isAuthenticated', 'true'); // Set authentication status
-        localStorage.setItem('role', role); // Save the user's role
-        localStorage.setItem('id', id); // Save the user's ID
-        navigate('/signin'); // Redirect to the Sign In page
+        const otp = generateOTP(); // Generate OTP
+        alert(`OTP sent to ${email}: ${otp}`); // Simulate sending OTP (for demo purposes)
+        setShowOTP(true); // Show the OTP popup
       } else {
         setError('Passwords do not match');
       }
     } else {
       setError('Please fill in all fields');
     }
+  };
+
+  const handleOTPVerify = () => {
+    // Save user data to localStorage (simulate successful sign-up)
+    localStorage.setItem('isAuthenticated', 'true');
+    localStorage.setItem('role', role);
+    localStorage.setItem('id', id);
+    setShowOTP(false); // Hide the OTP popup
+    navigate('/signin'); // Redirect to Sign In page
   };
 
   return (
@@ -101,6 +117,14 @@ function SignUp() {
           className="signup-image"
         />
       </div>
+
+      {/* OTP Popup */}
+      {showOTP && (
+        <OTP
+          generatedOTP={generatedOTP}
+          onVerify={handleOTPVerify}
+        />
+      )}
     </div>
   );
 }
