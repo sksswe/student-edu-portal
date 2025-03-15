@@ -1,47 +1,63 @@
+
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import OTP from '../OTP/OTP'; // Import the OTP component
 import './SignUp.css';
+import OTP from '../OTP/OTP';
 
 function SignUp() {
-  const [id, setId] = useState('');
+  const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [role, setRole] = useState('user');
   const [error, setError] = useState('');
-  const [showOTP, setShowOTP] = useState(false); // State to control OTP popup visibility
-  const [generatedOTP, setGeneratedOTP] = useState(''); // State to store the generated OTP
+  const [loading, setLoading] = useState(false);
+  const [showOTP, setShowOTP] = useState(false);
+  const [otpSent, setOtpSent] = useState(false);
   const navigate = useNavigate();
 
-  const generateOTP = () => {
-    const otp = Math.floor(1000 + Math.random() * 9000); // Generate a 4-digit OTP
-    setGeneratedOTP(otp.toString());
-    return otp.toString();
-  };
-
-  const handleSignUp = () => {
-    if (id && email && password && confirmPassword) {
-      if (password === confirmPassword) {
-        setError('');
-        const otp = generateOTP(); // Generate OTP
-        alert(`OTP sent to ${email}: ${otp}`); // Simulate sending OTP (for demo purposes)
-        setShowOTP(true); // Show the OTP popup
-      } else {
-        setError('Passwords do not match');
-      }
-    } else {
+  const handleSignUp = async () => {
+    if (!username || !email || !password || !confirmPassword) {
       setError('Please fill in all fields');
+      return;
     }
-  };
 
-  const handleOTPVerify = () => {
-    // Save user data to localStorage (simulate successful sign-up)
-    localStorage.setItem('isAuthenticated', 'true');
-    localStorage.setItem('role', role);
-    localStorage.setItem('id', id);
-    setShowOTP(false); // Hide the OTP popup
-    navigate('/signin'); // Redirect to Sign In page
+    if (password !== confirmPassword) {
+      setError('Passwords do not match');
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      const response = await fetch('http://127.0.0.1:8000/api/signup/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          username,
+          email,
+          password,
+          role,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setError('');
+        setOtpSent(true);
+        setShowOTP(true);
+      } else {
+        setError(data.error || 'Sign-up failed');
+      }
+    } catch (error) {
+      setError('Failed to connect to the server');
+      console.error('Error:', error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -51,12 +67,13 @@ function SignUp() {
           <h1>Sign Up</h1>
           <p>Choose your role and create an account.</p>
           {error && <div className="alert alert-danger">{error}</div>}
+          
           <input
             type="text"
             className="form-control my-2"
-            placeholder="ID"
-            value={id}
-            onChange={(e) => setId(e.target.value)}
+            placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
           />
           <input
             type="email"
@@ -79,6 +96,7 @@ function SignUp() {
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
           />
+
           <div className="role-selection">
             <label>
               <input
@@ -101,15 +119,18 @@ function SignUp() {
               Admin
             </label>
           </div>
-          <button className="btn btn-primary w-100" onClick={handleSignUp}>
-            Sign Up
+
+          <button className="btn btn-primary w-100" onClick={handleSignUp} disabled={loading}>
+            {loading ? 'Signing Up...' : 'Sign Up'}
           </button>
+
           <div className="signup-footer">
             <p>Already have an account? <Link to="/signin">Sign in</Link></p>
             <Link to="/">Home</Link>
           </div>
         </div>
       </div>
+
       <div className="signup-right">
         <img
           src="https://wallpapers.com/images/high/young-girl-learning-how-to-draw-dzqormhxkpuojcj0.webp"
@@ -118,13 +139,7 @@ function SignUp() {
         />
       </div>
 
-      {/* OTP Popup */}
-      {showOTP && (
-        <OTP
-          generatedOTP={generatedOTP}
-          onVerify={handleOTPVerify}
-        />
-      )}
+      {showOTP && <OTP email={email} onClose={() => setShowOTP(false)} navigate={navigate} />}
     </div>
   );
 }
