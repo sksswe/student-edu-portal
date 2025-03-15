@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import './SignUp.css';
@@ -9,7 +8,6 @@ function SignUp() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [role, setRole] = useState('user');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [showOTP, setShowOTP] = useState(false);
@@ -39,12 +37,11 @@ function SignUp() {
           username,
           email,
           password,
-          role,
+          role: 'user', // Always set role to 'user'
         }),
       });
 
       const data = await response.json();
-      //const data = await response.json();
 
       if (response.ok) {
         setError('');
@@ -98,29 +95,8 @@ function SignUp() {
             onChange={(e) => setConfirmPassword(e.target.value)}
           />
 
-          <div className="role-selection">
-            <label>
-              <input
-                type="radio"
-                name="role"
-                value="user"
-                checked={role === 'user'}
-                onChange={() => setRole('user')}
-              />
-              User
-            </label>
-            <label>
-              <input
-                type="radio"
-                name="role"
-                value="admin"
-                checked={role === 'admin'}
-                onChange={() => setRole('admin')}
-              />
-              Admin
-            </label>
-          </div>
-
+          {/* Removed the role selection part */}
+          
           <button className="btn btn-primary w-100" onClick={handleSignUp} disabled={loading}>
             {loading ? 'Signing Up...' : 'Sign Up'}
           </button>
