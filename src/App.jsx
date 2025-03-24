@@ -9,6 +9,7 @@ import ReportIssues from './pages/ReportIssues/ReportIssues';
 import Notifications from './pages/Notifications/Notifications';
 import ShareFiles from './pages/ShareFiles/ShareFiles';
 import StudyGroup from './pages/StudyGroup/StudyGroup';
+import CreateStudyGroup from './pages/CreateStudyGroup/CreateStudyGroup'; // Import the new component
 import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
@@ -74,6 +75,15 @@ function App() {
           element={
             <ProtectedRoute role="admin">
               <StudyGroup />
+            </ProtectedRoute>
+          }
+        />
+        {/* New Route for CreateStudyGroup */}
+        <Route
+          path="/create-study-group"
+          element={
+            <ProtectedRoute role="user">
+              <CreateStudyGroup />
             </ProtectedRoute>
           }
         />

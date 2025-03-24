@@ -1,7 +1,7 @@
 /* General Styles */
 .user-dashboard {
   display: flex;
-  min-height: 100vh; /* Ensure it spans the viewport height */
+  min-height: 100vh;
   font-family: 'Arial', sans-serif;
   background-color: #f5f6fa;
 }
@@ -16,7 +16,7 @@
   color: white;
   padding: 15px 30px;
   display: flex;
-  justify-content: center; /* Center the text */
+  justify-content: center;
   align-items: center;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   z-index: 1000;
@@ -31,16 +31,16 @@
 /* Sidebar */
 .sidebar {
   position: fixed;
-  top: 60px; /* Adjust based on header height */
+  top: 60px;
   left: 0;
-  width: 300px; /* Sidebar width */
-  height: calc(100vh - 60px); /* Full height minus header */
+  width: 300px;
+  height: calc(100vh - 60px);
   background-color: #34495e;
   padding: 20px;
   display: flex;
   flex-direction: column;
   box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
-  z-index: 1; /* Ensure sidebar is above the background image */
+  z-index: 1;
 }
 
 .sidebar-link {
@@ -69,14 +69,14 @@
   background-color: #e74c3c;
   color: white;
   border: none;
-  padding: 8px 16px; /* Smaller padding */
+  padding: 8px 16px;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 14px; /* Smaller font size */
+  font-size: 14px;
   transition: background-color 0.3s ease;
-  margin-top: auto; /* Push the button to the bottom */
-  width: 100%; /* Full width */
-  text-align: center; /* Center the text */
+  margin-top: auto;
+  width: 100%;
+  text-align: center;
 }
 
 .signout-button:hover {
@@ -85,38 +85,38 @@
 
 /* Main Content */
 .user-main-content {
-  margin-left: 300px; /* Match sidebar width */
-  margin-top: 60px; /* Match header height */
+  margin-left: 300px;
+  margin-top: 60px;
   padding: 30px;
-  width: calc(100vw - 300px); /* Take up remaining screen width minus sidebar */
-  min-height: calc(100vh - 60px); /* Full height minus header */
+  width: calc(100vw - 300px);
+  min-height: calc(100vh - 60px);
   background-color: #ffffff;
-  background-image: url('https://images.unsplash.com/photo-1501504905252-473c47e087f8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80') !important; /* User Dashboard image */
-  background-size: cover; /* Ensure the image covers the full area */
-  background-position: center; /* Center the background image */
-  background-repeat: no-repeat; /* Prevent tiling */
+  background-image: url('https://images.unsplash.com/photo-1501504905252-473c47e087f8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80') !important;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   position: relative;
-  overflow: hidden; /* Avoid any overflow issues */
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  justify-content: center; /* Center content vertically */
-  align-items: center; /* Center content horizontally */
-  text-align: center; /* Center text */
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 .user-main-content h1 {
   font-size: 28px;
-  color: #000000; /* Black color */
+  color: #000000;
   margin-bottom: 15px;
   position: relative;
-  z-index: 1; /* Ensure text is above the background image */
+  z-index: 1;
 }
 
 .user-main-content p {
   font-size: 16px;
-  color: #000000; /* Black color */
+  color: #000000;
   position: relative;
-  z-index: 1; /* Ensure text is above the background image */
+  z-index: 1;
 }
 
 /* Overlay for readability */
@@ -127,26 +127,51 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(255, 255, 255, 0.6); /* Optional semi-transparent overlay */
-  z-index: 0; /* Place the overlay behind the text */
+  background-color: rgba(255, 255, 255, 0.6);
+  z-index: 0;
+}
+
+/* Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 500px;
+  position: relative;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
   .sidebar {
-    width: 100%; /* Full width on small screens */
-    height: auto; /* Auto height */
-    position: static; /* Remove fixed positioning */
-    box-shadow: none; /* Remove shadow */
+    width: 100%;
+    height: auto;
+    position: static;
+    box-shadow: none;
   }
 
   .user-main-content {
-    margin-left: 0; /* Remove sidebar margin */
-    width: 100%; /* Full width */
-    min-height: calc(100vh - 120px); /* Adjust height for stacked layout */
+    margin-left: 0;
+    width: 100%;
+    min-height: calc(100vh - 120px);
   }
 
   .header {
-    position: static; /* Remove fixed positioning */
+    position: static;
   }
 }

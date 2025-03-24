@@ -1,0 +1,133 @@
+.join-study-group-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .join-study-group-modal .modal-content {
+    background-color: white;
+    padding: 25px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+    max-height: 80vh;
+    overflow-y: auto;
+    position: relative;
+  }
+  
+  .join-study-group-modal .close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
+  .join-study-group-modal h2 {
+    margin-top: 0;
+    color: #2c3e50;
+    text-align: center;
+  }
+  
+  .join-study-group-modal h3 {
+    color: #34495e;
+    margin-bottom: 15px;
+  }
+  
+  .join-study-group-modal .group-list ul {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 20px;
+  }
+  
+  .join-study-group-modal .group-list li {
+    padding: 10px;
+    margin: 5px 0;
+    background-color: #f5f6fa;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .join-study-group-modal .group-list li:hover {
+    background-color: #e0e0e0;
+  }
+  
+  .join-study-group-modal .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .join-study-group-modal .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+  }
+  
+  .join-study-group-modal .form-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .join-study-group-modal .button-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    gap: 10px;
+  }
+  
+  .join-study-group-modal .button-group button {
+    flex: 1;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .join-study-group-modal .button-group button:first-child {
+    background-color: #e0e0e0;
+  }
+  
+  .join-study-group-modal .button-group button:nth-child(2) {
+    background-color: #2c3e50;
+    color: white;
+  }
+  
+  .join-study-group-modal .cancel-button {
+    background-color: #e74c3c;
+    color: white;
+  }
+  
+  .join-study-group-modal .cancel-button:hover {
+    background-color: #c0392b;
+  }
+  
+  .join-study-group-modal .error-message {
+    color: #e74c3c;
+    margin-top: 10px;
+    text-align: center;
+  }
+  
+  .cancel-button-container {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .cancel-button-container button {
+    padding: 8px 20px;
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }

@@ -1,13 +1,17 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import StudyGroupModal from "../Modal/StudyGroupModal";
-import ReportIssues from "../ReportIssues/ReportIssues"; // Import the ReportIssues component
+import ReportIssues from "../ReportIssues/ReportIssues";
+import CreateStudyGroup from "../CreateStudyGroup/CreateStudyGroup";
+import JoinStudyGroup from "../JoinStudyGroup/JoinStudyGroup"; // Import the new component
 import "./UserDashboard.css";
 
 function UserDashboard() {
   const navigate = useNavigate();
   const [isStudyGroupModalOpen, setIsStudyGroupModalOpen] = useState(false);
   const [isReportIssuesModalOpen, setIsReportIssuesModalOpen] = useState(false);
+  const [isCreateStudyGroupModalOpen, setIsCreateStudyGroupModalOpen] = useState(false);
+  const [isJoinStudyGroupModalOpen, setIsJoinStudyGroupModalOpen] = useState(false); // New state for join modal
 
   const handleSignOut = () => {
     if (window.confirm("Are you sure you want to sign out?")) {
@@ -29,17 +33,28 @@ function UserDashboard() {
 
   const handleCreateGroup = () => {
     setIsStudyGroupModalOpen(false);
-    navigate("/create-study-group");
+    setIsCreateStudyGroupModalOpen(true);
   };
 
   const handleJoinGroup = () => {
     setIsStudyGroupModalOpen(false);
-    navigate("/join-study-group");
+    setIsJoinStudyGroupModalOpen(true); // Open the join modal instead of navigating
   };
 
   const handleSubmitReport = (reportData) => {
-    console.log("Report Data:", reportData); // Handle form submission (e.g., send to an API)
+    console.log("Report Data:", reportData);
     setIsReportIssuesModalOpen(false);
+  };
+
+  const handleCreateStudyGroupSubmit = (groupData) => {
+    console.log("Study Group Created:", groupData);
+    setIsCreateStudyGroupModalOpen(false);
+  };
+
+  const handleJoinStudyGroupSuccess = (groupData) => {
+    console.log("Successfully joined:", groupData);
+    setIsJoinStudyGroupModalOpen(false);
+    // You might want to update the UI or state here
   };
 
   return (
@@ -93,6 +108,30 @@ function UserDashboard() {
           onCreateGroup={handleCreateGroup}
           onJoinGroup={handleJoinGroup}
         />
+      )}
+
+      {/* Create Study Group Modal */}
+      {isCreateStudyGroupModalOpen && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <CreateStudyGroup
+              onSubmit={handleCreateStudyGroupSubmit}
+              onClose={() => setIsCreateStudyGroupModalOpen(false)}
+            />
+          </div>
+        </div>
+      )}
+
+      {/* Join Study Group Modal */}
+      {isJoinStudyGroupModalOpen && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <JoinStudyGroup
+              onClose={() => setIsJoinStudyGroupModalOpen(false)}
+              onJoin={handleJoinStudyGroupSuccess}
+            />
+          </div>
+        </div>
       )}
 
       {/* Report Issues Modal */}
