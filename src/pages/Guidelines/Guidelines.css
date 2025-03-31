@@ -1,0 +1,192 @@
+/* ====== BASE RESET ====== */
+html, body, #root, .guidelines-wrapper {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+  }
+  
+  /* ====== FIXED HEADER ====== */
+  .fixed-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background-color: #28a745;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .header-content {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+  }
+  
+  .header-logo {
+    color: white;
+    font-weight: bold;
+    font-size: 1.2rem;
+    text-decoration: none;
+  }
+  
+  .nav-links {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .nav-link {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    padding: 5px 0;
+    position: relative;
+  }
+  
+  .nav-link.active {
+    font-weight: bold;
+  }
+  
+  .nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: white;
+  }
+  
+  /* ====== MAIN CONTENT ====== */
+  .content-area {
+    width: 100%;
+    padding-top: 80vh;
+    display: flex;
+    justify-content: center;
+    min-height: calc(100vh - 80vh);
+  }
+  
+  .content-container {
+    width: 100%;
+    max-width: 1200px;
+    padding: 30px;
+    background: white;
+    box-shadow: 0 0 15px rgba(0,0,0,0.05);
+  }
+  
+  /* ====== CONTENT STYLES ====== */
+  .page-title {
+    color: #2c3e50;
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2rem;
+    width: 100%;
+  }
+  
+  .guideline-section {
+    width: 100%;
+    margin-bottom: 40px;
+  }
+  
+  .section-title {
+    color: #28a745;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #e9ecef;
+  }
+  
+  .guideline-card {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    border-left: 4px solid #28a745;
+    width: 100%;
+  }
+  
+  .card-title {
+    color: #2c3e50;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+  }
+  
+  .card-text {
+    margin-bottom: 15px;
+    color: #495057;
+  }
+  
+  .feature-list {
+    padding-left: 20px;
+    width: 100%;
+  }
+  
+  .feature-list li {
+    margin-bottom: 10px;
+    color: #495057;
+  }
+  
+  .support-section {
+    background: #e9f5ff;
+    padding: 20px;
+    border-radius: 6px;
+    margin-top: 40px;
+    border-left: 4px solid #1a73e8;
+    width: 100%;
+  }
+  
+  /* ====== RESPONSIVE FIXES ====== */
+  @media (max-width: 768px) {
+    .content-container {
+      padding: 20px;
+      max-width: 95vw;
+    }
+    
+    .nav-links {
+      gap: 15px;
+    }
+    
+    .page-title {
+      font-size: 1.7rem;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .header-content {
+      flex-direction: column;
+      padding: 10px;
+      height: auto;
+    }
+    
+    .fixed-header {
+      height: auto;
+      padding: 10px 0;
+    }
+    
+    .nav-links {
+      margin-top: 10px;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    
+    .content-area {
+      padding-top: 120px;
+    }
+    
+    .content-container {
+      padding: 15px;
+    }
+    
+    .page-title {
+      font-size: 1.5rem;
+    }
+  }

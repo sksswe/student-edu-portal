@@ -69,7 +69,7 @@ function SignUp() {
           <input
             type="text"
             className="form-control my-2"
-            placeholder="Username"
+            placeholder="User Name"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />

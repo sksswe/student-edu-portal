@@ -73,7 +73,7 @@ function SignIn() {
           <input
             type="text"
             className="form-control my-2"
-            placeholder="ID"
+            placeholder="User Name"
             value={id}
             onChange={(e) => setId(e.target.value)}
           />
@@ -130,4 +130,8 @@ function SignIn() {
   );
 }
 
-export default SignIn;
+export default SignIn; 
+
+
+
+

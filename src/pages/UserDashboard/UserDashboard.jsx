@@ -3,7 +3,8 @@ import { useNavigate, Link } from "react-router-dom";
 import StudyGroupModal from "../Modal/StudyGroupModal";
 import ReportIssues from "../ReportIssues/ReportIssues";
 import CreateStudyGroup from "../CreateStudyGroup/CreateStudyGroup";
-import JoinStudyGroup from "../JoinStudyGroup/JoinStudyGroup"; // Import the new component
+import JoinStudyGroup from "../JoinStudyGroup/JoinStudyGroup";
+import GroupChat from "../GroupChat/GroupChat"; // Import the GroupChat component
 import "./UserDashboard.css";
 
 function UserDashboard() {
@@ -11,12 +12,15 @@ function UserDashboard() {
   const [isStudyGroupModalOpen, setIsStudyGroupModalOpen] = useState(false);
   const [isReportIssuesModalOpen, setIsReportIssuesModalOpen] = useState(false);
   const [isCreateStudyGroupModalOpen, setIsCreateStudyGroupModalOpen] = useState(false);
-  const [isJoinStudyGroupModalOpen, setIsJoinStudyGroupModalOpen] = useState(false); // New state for join modal
+  const [isJoinStudyGroupModalOpen, setIsJoinStudyGroupModalOpen] = useState(false);
+  const [isGroupChatOpen, setIsGroupChatOpen] = useState(false); // New state for GroupChat popup
 
   const handleSignOut = () => {
     if (window.confirm("Are you sure you want to sign out?")) {
       localStorage.removeItem("isAuthenticated");
       localStorage.removeItem("role");
+      localStorage.removeItem("token");
+      localStorage.removeItem("id");
       navigate("/");
     }
   };
@@ -38,7 +42,7 @@ function UserDashboard() {
 
   const handleJoinGroup = () => {
     setIsStudyGroupModalOpen(false);
-    setIsJoinStudyGroupModalOpen(true); // Open the join modal instead of navigating
+    setIsJoinStudyGroupModalOpen(true);
   };
 
   const handleSubmitReport = (reportData) => {
@@ -54,7 +58,6 @@ function UserDashboard() {
   const handleJoinStudyGroupSuccess = (groupData) => {
     console.log("Successfully joined:", groupData);
     setIsJoinStudyGroupModalOpen(false);
-    // You might want to update the UI or state here
   };
 
   return (
@@ -71,15 +74,16 @@ function UserDashboard() {
         >
           <span className="link-icon">📚</span> Study Group
         </Link>
-        <Link to="/group-chat" className="sidebar-link">
+        <Link 
+          to="#" 
+          className="sidebar-link" 
+          onClick={(e) => {
+            e.preventDefault();
+            setIsGroupChatOpen(true);
+          }}
+        >
           <span className="link-icon">💬</span> Group Chat
-        </Link>
-        <Link to="/share-files" className="sidebar-link">
-          <span className="link-icon">📂</span> Share Files
-        </Link>
-        <Link to="/view-files" className="sidebar-link">
-          <span className="link-icon">👀</span> View Files
-        </Link>
+        </Link> 
         <Link to="/notifications" className="sidebar-link">
           <span className="link-icon">🔔</span> Notifications
         </Link>
@@ -132,6 +136,11 @@ function UserDashboard() {
             />
           </div>
         </div>
+      )}
+
+      {/* Group Chat Popup */}
+      {isGroupChatOpen && (
+        <GroupChat onClose={() => setIsGroupChatOpen(false)} />
       )}
 
       {/* Report Issues Modal */}

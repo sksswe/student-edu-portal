@@ -9,7 +9,7 @@ import ReportIssues from './pages/ReportIssues/ReportIssues';
 import Notifications from './pages/Notifications/Notifications';
 import ShareFiles from './pages/ShareFiles/ShareFiles';
 import StudyGroup from './pages/StudyGroup/StudyGroup';
-import CreateStudyGroup from './pages/CreateStudyGroup/CreateStudyGroup'; // Import the new component
+import Guidelines from './pages/Guidelines/Guidelines';
 import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
@@ -20,21 +20,14 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/guidelines" element={<Guidelines />} />
 
-        {/* Protected Routes */}
+        {/* Admin-only Routes */}
         <Route
           path="/admin-dashboard"
           element={
             <ProtectedRoute role="admin">
               <AdminDashboard />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/user-dashboard"
-          element={
-            <ProtectedRoute role="user">
-              <UserDashboard />
             </ProtectedRoute>
           }
         />
@@ -46,10 +39,20 @@ function App() {
             </ProtectedRoute>
           }
         />
+
+        {/* User-only Routes */}
+        <Route
+          path="/user-dashboard"
+          element={
+            <ProtectedRoute role="user">
+              <UserDashboard />
+            </ProtectedRoute>
+          }
+        />
         <Route
           path="/report-issues"
           element={
-            <ProtectedRoute role="admin">
+            <ProtectedRoute role="user">
               <ReportIssues />
             </ProtectedRoute>
           }
@@ -57,7 +60,7 @@ function App() {
         <Route
           path="/notifications"
           element={
-            <ProtectedRoute role="admin">
+            <ProtectedRoute role="user">
               <Notifications />
             </ProtectedRoute>
           }
@@ -65,7 +68,7 @@ function App() {
         <Route
           path="/share-files"
           element={
-            <ProtectedRoute role="admin">
+            <ProtectedRoute role="user">
               <ShareFiles />
             </ProtectedRoute>
           }
@@ -73,17 +76,8 @@ function App() {
         <Route
           path="/study-group"
           element={
-            <ProtectedRoute role="admin">
-              <StudyGroup />
-            </ProtectedRoute>
-          }
-        />
-        {/* New Route for CreateStudyGroup */}
-        <Route
-          path="/create-study-group"
-          element={
             <ProtectedRoute role="user">
-              <CreateStudyGroup />
+              <StudyGroup />
             </ProtectedRoute>
           }
         />

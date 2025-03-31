@@ -5,23 +5,19 @@ const ProtectedRoute = ({ children, role }) => {
   const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
   const userRole = localStorage.getItem('role');
 
-  // Debugging: Log the authentication status and user role
-  console.log('isAuthenticated:', isAuthenticated);
-  console.log('userRole:', userRole);
-  console.log('requiredRole:', role);
-
   if (!isAuthenticated) {
-    console.log('User is not authenticated. Redirecting to /signin');
-    return <Navigate to="/signin" />; // Redirect to sign-in if not authenticated
+    return <Navigate to="/signin" replace />;
   }
 
   if (role && userRole !== role) {
-    console.log('User role does not match. Redirecting to /');
-    return <Navigate to="/" />; // Redirect to home if role doesn't match
+    return <Navigate to="/" replace />;
   }
 
-  console.log('User is authenticated and role matches. Rendering the component.');
-  return children; // Render the child component if authenticated and role matches
+  return children;
 };
 
-export default ProtectedRoute;
+export default ProtectedRoute; 
+
+
+
+
