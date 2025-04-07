@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import StudyGroupModal from "../Modal/StudyGroupModal";
 import ReportIssues from "../ReportIssues/ReportIssues";
 import CreateStudyGroup from "../CreateStudyGroup/CreateStudyGroup";
 import JoinStudyGroup from "../JoinStudyGroup/JoinStudyGroup";
-import GroupChat from "../GroupChat/GroupChat"; // Import the GroupChat component
 import "./UserDashboard.css";
 
 function UserDashboard() {
@@ -13,15 +12,51 @@ function UserDashboard() {
   const [isReportIssuesModalOpen, setIsReportIssuesModalOpen] = useState(false);
   const [isCreateStudyGroupModalOpen, setIsCreateStudyGroupModalOpen] = useState(false);
   const [isJoinStudyGroupModalOpen, setIsJoinStudyGroupModalOpen] = useState(false);
-  const [isGroupChatOpen, setIsGroupChatOpen] = useState(false); // New state for GroupChat popup
+  const [username, setUsername] = useState(""); // For storing the username
 
-  const handleSignOut = () => {
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    const storedUsername = localStorage.getItem("username");
+
+    if (!token) {
+      navigate("/signin");
+    } else {
+      setUsername(storedUsername || "User");
+    }
+  }, [navigate]);
+
+  const handleSignOut = async () => {
     if (window.confirm("Are you sure you want to sign out?")) {
-      localStorage.removeItem("isAuthenticated");
-      localStorage.removeItem("role");
-      localStorage.removeItem("token");
-      localStorage.removeItem("id");
-      navigate("/");
+      const refreshToken = localStorage.getItem("refresh_token");
+      
+      if (!refreshToken) {
+        alert("No refresh token found. Please log in again.");
+        localStorage.removeItem("token");
+        localStorage.removeItem("refresh_token");
+        navigate("/signin");
+        return;
+      }
+
+      try {
+        const response = await fetch("http://127.0.0.1:8000/api/logout/", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+          body: JSON.stringify({ refresh_token: refreshToken }),
+        });
+
+        if (response.ok) {
+          localStorage.removeItem("token");
+          localStorage.removeItem("refresh_token");
+          navigate("/signin");
+        } else {
+          alert("Failed to log out. Please try again.");
+        }
+      } catch (error) {
+        console.error("Logout error:", error);
+      }
     }
   };
 
@@ -63,7 +98,7 @@ function UserDashboard() {
   return (
     <div className="user-dashboard">
       <header className="header">
-        <h2>Welcome, User</h2>
+        <h2>Welcome, {username ? username : "User"}</h2> {/* Display username */}
       </header>
 
       <nav className="sidebar">
@@ -74,16 +109,15 @@ function UserDashboard() {
         >
           <span className="link-icon">📚</span> Study Group
         </Link>
-        <Link 
-          to="#" 
-          className="sidebar-link" 
-          onClick={(e) => {
-            e.preventDefault();
-            setIsGroupChatOpen(true);
-          }}
-        >
+        <Link to="/group-chat" className="sidebar-link">
           <span className="link-icon">💬</span> Group Chat
-        </Link> 
+        </Link>
+        <Link to="/share-files" className="sidebar-link">
+          <span className="link-icon">📂</span> Share Files
+        </Link>
+        <Link to="/view-files" className="sidebar-link">
+          <span className="link-icon">👀</span> View Files
+        </Link>
         <Link to="/notifications" className="sidebar-link">
           <span className="link-icon">🔔</span> Notifications
         </Link>
@@ -136,11 +170,6 @@ function UserDashboard() {
             />
           </div>
         </div>
-      )}
-
-      {/* Group Chat Popup */}
-      {isGroupChatOpen && (
-        <GroupChat onClose={() => setIsGroupChatOpen(false)} />
       )}
 
       {/* Report Issues Modal */}

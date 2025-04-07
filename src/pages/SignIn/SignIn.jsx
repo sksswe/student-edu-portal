@@ -3,16 +3,14 @@ import { useNavigate, Link } from 'react-router-dom';
 import './SignIn.css';
 
 function SignIn() {
-  const [id, setId] = useState('');
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [role, setRole] = useState('user');
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleSignIn = async () => {
-    if (!id || !email || !password) {
+    if (!username || !password) {
       setError('Please fill in all fields');
       return;
     }
@@ -21,17 +19,12 @@ function SignIn() {
     setError('');
 
     try {
-      const response = await fetch('https://your-backend-api.com/auth/signin', {
+      const response = await fetch('http://127.0.0.1:8000/api/login/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          id,
-          email,
-          password,
-          role
-        }),
+        body: JSON.stringify({ username, password }),
       });
 
       const data = await response.json();
@@ -40,19 +33,61 @@ function SignIn() {
         throw new Error(data.message || 'Sign in failed');
       }
 
-      // Save authentication data
+      // Save authentication data with Bearer token and refresh_token
+      localStorage.setItem('token', data.access_token);  // Access token for authentication
+      localStorage.setItem('refresh_token', data.refresh_token);  // Refresh token
+      localStorage.setItem('username', username);
       localStorage.setItem('isAuthenticated', 'true');
-      localStorage.setItem('role', data.role || role);
-      localStorage.setItem('id', data.id || id);
-      localStorage.setItem('token', data.token); // Save the authentication token
 
-      // Redirect based on role
-      navigate(data.role === 'admin' ? '/admin-dashboard' : '/user-dashboard');
+      // Redirect user after login
+      navigate('/user-dashboard');
     } catch (error) {
       console.error('Sign in error:', error);
       setError(error.message || 'Sign in failed. Please try again.');
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const handleSignOut = async () => {
+    const refreshToken = localStorage.getItem('refresh_token');
+
+    if (!refreshToken) {
+      alert('No refresh token found. Please log in again.');
+      localStorage.removeItem('token');
+      localStorage.removeItem('refresh_token');
+      localStorage.removeItem('username');
+      localStorage.removeItem('isAuthenticated');
+      navigate('/signin');
+      return;
+    }
+
+    try {
+      const response = await fetch('http://127.0.0.1:8000/api/token/refresh/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ refresh_token: refreshToken }),
+      });
+
+      if (response.ok) {
+        // After refreshing the token, you can invalidate the session by logging out
+        localStorage.removeItem('token');
+        localStorage.removeItem('refresh_token');
+        localStorage.removeItem('username');
+        localStorage.removeItem('isAuthenticated');
+        navigate('/signin');
+      } else {
+        throw new Error('Failed to refresh token');
+      }
+    } catch (error) {
+      console.error('Logout error:', error);
+      localStorage.removeItem('token');
+      localStorage.removeItem('refresh_token');
+      localStorage.removeItem('username');
+      localStorage.removeItem('isAuthenticated');
+      navigate('/signin');
     }
   };
 
@@ -73,16 +108,9 @@ function SignIn() {
           <input
             type="text"
             className="form-control my-2"
-            placeholder="User Name"
-            value={id}
-            onChange={(e) => setId(e.target.value)}
-          />
-          <input
-            type="email"
-            className="form-control my-2"
-            placeholder="Email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
           />
           <input
             type="password"
@@ -91,28 +119,6 @@ function SignIn() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <div className="role-selection">
-            <label>
-              <input
-                type="radio"
-                name="role"
-                value="user"
-                checked={role === 'user'}
-                onChange={() => setRole('user')}
-              />
-              User
-            </label>
-            <label>
-              <input
-                type="radio"
-                name="role"
-                value="admin"
-                checked={role === 'admin'}
-                onChange={() => setRole('admin')}
-              />
-              Admin
-            </label>
-          </div>
           <button 
             className="btn btn-primary w-100" 
             onClick={handleSignIn}
@@ -130,8 +136,4 @@ function SignIn() {
   );
 }
 
-export default SignIn; 
-
-
-
-
+export default SignIn;
