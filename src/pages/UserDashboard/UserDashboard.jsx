@@ -12,6 +12,7 @@ function UserDashboard() {
   const [isReportIssuesModalOpen, setIsReportIssuesModalOpen] = useState(false);
   const [isCreateStudyGroupModalOpen, setIsCreateStudyGroupModalOpen] = useState(false);
   const [isJoinStudyGroupModalOpen, setIsJoinStudyGroupModalOpen] = useState(false);
+
   const [username, setUsername] = useState(""); // For storing the username
 
   useEffect(() => {
@@ -25,38 +26,10 @@ function UserDashboard() {
     }
   }, [navigate]);
 
-  const handleSignOut = async () => {
+  const handleSignOut = () => {
     if (window.confirm("Are you sure you want to sign out?")) {
-      const refreshToken = localStorage.getItem("refresh_token");
-      
-      if (!refreshToken) {
-        alert("No refresh token found. Please log in again.");
-        localStorage.removeItem("token");
-        localStorage.removeItem("refresh_token");
-        navigate("/signin");
-        return;
-      }
-
-      try {
-        const response = await fetch("http://127.0.0.1:8000/api/logout/", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-          body: JSON.stringify({ refresh_token: refreshToken }),
-        });
-
-        if (response.ok) {
-          localStorage.removeItem("token");
-          localStorage.removeItem("refresh_token");
-          navigate("/signin");
-        } else {
-          alert("Failed to log out. Please try again.");
-        }
-      } catch (error) {
-        console.error("Logout error:", error);
-      }
+      localStorage.removeItem("token");
+      navigate("/signin");
     }
   };
 
