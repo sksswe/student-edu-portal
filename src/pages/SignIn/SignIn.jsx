@@ -35,6 +35,7 @@ function SignIn() {
 
       // Save authentication data with Bearer token and refresh_token
       localStorage.setItem('token', data.access_token);  // Access token for authentication
+      localStorage.setItem("token", response.token);
       localStorage.setItem('refresh_token', data.refresh_token);  // Refresh token
       localStorage.setItem('username', username);
       localStorage.setItem('isAuthenticated', 'true');

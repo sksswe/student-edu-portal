@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Study Group</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    label {
+      display: block;
+      font-weight: bold;
+    }
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      box-sizing: border-box;
+    }
+    .error-message {
+      color: red;
+      margin-top: 10px;
+    }
+    button {
+      padding: 10px 15px;
+      margin-top: 10px;
+      cursor: pointer;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      font-size: 16px;
+    }
+    button:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Create a New Study Group</h2>
+  <div id="error-message" class="error-message"></div>
+  <form id="create-group-form">
+    <div class="form-group">
+      <label for="token">Token</label>
+      <input type="text" id="token" placeholder="Enter your token">
+    </div>
+    <div class="form-group">
+      <label for="groupName">Group Name</label>
+      <input type="text" id="groupName" placeholder="Enter study group name">
+    </div>
+    <div class="form-group">
+      <label for="groupPassword">Group Password</label>
+      <input type="password" id="groupPassword" placeholder="Set a password for the group">
+    </div>
+    <button type="submit">Create Study Group</button>
+  </form>
+
+  <script>
+    document.getElementById("create-group-form").addEventListener("submit", async function(event) {
+      event.preventDefault();
+
+      const token = document.getElementById("token").value.trim();
+      const groupName = document.getElementById("groupName").value.trim();
+      const groupPassword = document.getElementById("groupPassword").value.trim();
+      const errorMessageDiv = document.getElementById("error-message");
+
+      // Validate inputs
+      if (!token) {
+        errorMessageDiv.textContent = "Token is required.";
+        return;
+      }
+      if (!groupName) {
+        errorMessageDiv.textContent = "Group name is required.";
+        return;
+      }
+      if (!groupPassword) {
+        errorMessageDiv.textContent = "Group password is required.";
+        return;
+      }
+
+      // Clear any previous errors
+      errorMessageDiv.textContent = "";
+
+      try {
+        const response = await fetch("http://127.0.0.1:8000/api/study/create-groupstudy/", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${token}`  // Add Bearer token for authentication
+          },
+          body: JSON.stringify({
+            groupName: groupName,
+            password: groupPassword
+          })
+        });
+
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.message || "Failed to create study group.");
+        }
+
+        const data = await response.json();
+        console.log("Study group created:", data);
+        alert("Study group created successfully!");
+
+        // Clear form
+        document.getElementById("groupName").value = '';
+        document.getElementById("groupPassword").value = '';
+      } catch (error) {
+        console.error("Error creating study group:", error);
+        errorMessageDiv.textContent = error.message || "An error occurred while creating the study group. Please try again.";
+      }
+    });
+  </script>
+
+</body>
+</html>
