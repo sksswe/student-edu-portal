@@ -108,7 +108,7 @@ function CreateStudyGroup({ onSubmit, onClose }) {
     const storedToken = localStorage.getItem("token");
     setToken(storedToken);
     console.log("Token from localStorage:", storedToken); // Debugging token
-  }, []);
+  }, [token]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
