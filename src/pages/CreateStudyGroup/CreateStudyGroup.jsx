@@ -119,8 +119,12 @@ function CreateStudyGroup({ onSubmit, onClose }) {
       return;
     }
 
-    if (!groupPassword.trim()) {
-      setError("Group password is required.");
+    // if (!groupPassword.trim() ) {
+    //   setError("Group password is required.");
+    //   return;
+    // }
+    if (groupPassword && !groupPassword.trim()) {
+      setError("Group password cannot be just spaces.");
       return;
     }
 
