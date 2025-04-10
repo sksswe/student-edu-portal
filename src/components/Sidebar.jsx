@@ -34,7 +34,7 @@ const Sidebar = () => {
       <Search />
       <Chats />
 
-      <div className="createGroupWrapper">
+      <div className="MessageGroupWrapper">
         <button className="createGroupBtn" onClick={() => setShowModal(true)}>
           Create GroupChat
         </button>
