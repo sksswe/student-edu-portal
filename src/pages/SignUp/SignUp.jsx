@@ -5,6 +5,7 @@ import OTP from '../OTP/OTP';
 
 function SignUp() {
   const [username, setUsername] = useState('');
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -35,6 +36,7 @@ function SignUp() {
         },
         body: JSON.stringify({
           username,
+          name,
           email,
           password,
           role: 'user', // Always set role to 'user'
@@ -72,6 +74,13 @@ function SignUp() {
             placeholder="User Name"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
+          />
+          <input
+            type="text"
+            className="form-control my-2"
+            placeholder="Full Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
           />
           <input
             type="email"
