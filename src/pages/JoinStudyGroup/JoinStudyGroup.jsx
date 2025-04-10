@@ -223,14 +223,28 @@ function JoinStudyGroup() {
       return;
     }
 
+    const token = localStorage.getItem('token'); // Get Bearer token from localStorage
+    if (!token) {
+      alert('You must be logged in to join a study group.');
+      return;
+    }
+
     try {
-      // Replace with your API call to join a group using the invite code
-      await axios.post("http://127.0.0.1:8000/api/study/join-groupstudy/", {
-        inviteCode: inviteCode,
-        password: password || null,
+      // Make the API call to join the group with the invite code and optional password
+      const response = await axios.post("http://127.0.0.1:8000/api/study/join-groupstudy/", {
+        invite_code: inviteCode,
+        password: password || null,  // Send null if no password
+      }, {
+        headers: {
+          'Authorization': `Bearer ${token}`, // Include Bearer token in the headers
+          'Content-Type': 'application/json',
+        }
       });
-      alert('Joined the group successfully!');
-      navigate('/study-group');  // Redirect to Study Groups page after joining
+
+      if (response.status === 200) {
+        alert('Joined the group successfully!');
+        navigate('/study-group');  // Redirect to Study Groups page after joining
+      }
     } catch (error) {
       console.error('Error joining group:', error);
       alert('Failed to join the group. Please try again.');
@@ -267,6 +281,7 @@ function JoinStudyGroup() {
 }
 
 export default JoinStudyGroup;
+
 
 
 
