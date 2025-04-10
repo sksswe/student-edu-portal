@@ -40,7 +40,7 @@ const Sidebar = () => {
         </button>
       </div>
 
-      {showModal && <CreateGroupModal onClose={() => setShowModal(false)} />}
+      {showModal && <MessageGroupModal onClose={() => setShowModal(false)} />}
     </div>
   );
 };
