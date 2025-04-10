@@ -13,6 +13,7 @@ import Guidelines from './pages/Guidelines/Guidelines';
 import ProtectedRoute from './components/ProtectedRoute';
 import CreateStudyGroup from './pages/CreateStudyGroup/CreateStudyGroup'; // ✅ Import added here
 import JoinStudyGroup from './pages/JoinStudyGroup/JoinStudyGroup'; // ✅ Import added here
+import GroupChat from './pages/GroupChat/GroupChat';
 
 function App() {
   return (
@@ -96,6 +97,22 @@ function App() {
           element={
             <ProtectedRoute role="user">
               <JoinStudyGroup />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/join-study-group" // ✅ Add the route for joining a study group
+          element={
+            <ProtectedRoute role="user">
+              <JoinStudyGroup />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/group-chat"
+          element={
+            <ProtectedRoute role="user">
+              <GroupChat/>
             </ProtectedRoute>
           }
         />
