@@ -127,7 +127,7 @@ function StudyGroup() {
             <div key={group.id} className="group-card">
               <div className="group-info">
                 <h3>{group.groupName}</h3>
-                <p>{group.description}</p>
+                <span>🕒 Last Update {new Date(group.updated_at).toLocaleDateString()}</span>
                 <div className="group-meta">
                   <span>👥 {group.members.length} members</span>
                   <span>🕒 Created {new Date(group.created_at).toLocaleDateString()}</span>
