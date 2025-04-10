@@ -1,21 +1,22 @@
+/* StudyGroup.css */
 
-
-/* StudyGroup.css */                        
 .study-group-page-container {
   display: flex;
   min-height: 100vh;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
 }
 
-/* Sidebar Styles */                      
+/* Sidebar Styles */
 .study-group-sidebar {
   width: 250px;
   background-color: #2c3e50;
   color: white;
   padding: 1.5rem;
-  position: fixed;
-  height: 100vh;
+  position: fixed; /* Keep it fixed */
+  height: 100vh; /* Full viewport height */
   box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  overflow-y: auto; /* Make sidebar scrollable if content overflows */
 }
 
 .sidebar-header {
@@ -58,12 +59,14 @@
   background-color: #3498db;
 }
 
-/* Main Content */                             
+/* Main Content */
 .study-group-main-content {
-  margin-left: 250px;
+  margin-left: 250px; /* Space for the fixed sidebar */
   flex: 1;
   padding: 2rem;
   max-width: 1200px;
+  overflow-y: auto; /* Allow scrolling if the content is too large */
+  height: 100vh; /* Full viewport height */
 }
 
 .study-group-header {
@@ -145,25 +148,6 @@
   background-color: #e67e22;
 }
 
-@media (max-width: 768px) {
-  .study-group-sidebar {
-    width: 100%;
-    height: auto;
-    position: static;
-  }
-  
-  .study-group-main-content {
-    margin-left: 0;
-    padding: 1rem;
-  }
-  
-  .study-group-header {
-    flex-direction: column;
-    gap: 1rem;
-  }
-}
-
-
 .copy-btn {
   background-color: #f39c12;
   color: white;
@@ -177,4 +161,23 @@
 
 .copy-btn:hover {
   background-color: #45a049;
+}
+
+/* Handle screen resizing */
+@media (max-width: 768px) {
+  .study-group-sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+  }
+
+  .study-group-main-content {
+    margin-left: 0;
+    padding: 1rem;
+  }
+
+  .study-group-header {
+    flex-direction: column;
+    gap: 1rem;
+  }
 }
