@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './StudyGroup.css';
@@ -18,33 +17,52 @@ function StudyGroup() {
     }
   }, []);
 
-  // Mock data for groups
-  const mockGroups = [
-    {
-      id: 'group1',
-      name: 'Advanced Mathematics',
-      description: 'For students taking Calculus and Linear Algebra',
-      members: 12,
-      createdAt: '2023-10-15'
-    },
-    {
-      id: 'group2',
-      name: 'Computer Science Fundamentals',
-      description: 'Data Structures and Algorithms study group',
-      members: 8,
-      createdAt: '2023-11-02'
-    }
-  ];
-
-  // Simulate API loading
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setGroups(mockGroups);
+  // Function to fetch groups from the REST API
+  const fetchGroups = async () => {
+    const token = localStorage.getItem('token'); // Get the token from localStorage
+    if (!token) {
+      setError('No token found');
       setLoading(false);
-    }, 800);
+      return;
+    }
 
-    return () => clearTimeout(timer);
+    try {
+      const response = await fetch('http://127.0.0.1:8000/api/study/join-studygroup/list-all/', {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${token}`, // Include the token for authentication
+          'Content-Type': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setGroups(data); // Set the data returned by the API
+      } else {
+        setError('Failed to fetch groups');
+      }
+    } catch (error) {
+      setError('An error occurred while fetching the groups');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Fetch groups on component mount
+  useEffect(() => {
+    fetchGroups();
   }, []);
+
+  // Function to handle copying the invite code
+  const handleCopyInviteCode = (inviteCode) => {
+    navigator.clipboard.writeText(inviteCode)
+      .then(() => {
+        alert('Invite code copied to clipboard!');
+      })
+      .catch((err) => {
+        alert('Failed to copy invite code: ', err);
+      });
+  };
 
   if (loading) {
     return (
@@ -108,11 +126,11 @@ function StudyGroup() {
           {groups.map((group) => (
             <div key={group.id} className="group-card">
               <div className="group-info">
-                <h3>{group.name}</h3>
+                <h3>{group.groupName}</h3>
                 <p>{group.description}</p>
                 <div className="group-meta">
-                  <span>👥 {group.members} members</span>
-                  <span>🕒 Created {group.createdAt}</span>
+                  <span>👥 {group.members.length} members</span>
+                  <span>🕒 Created {new Date(group.created_at).toLocaleDateString()}</span>
                 </div>
               </div>
               <div className="group-actions">
@@ -121,6 +139,12 @@ function StudyGroup() {
                   onClick={() => navigate(`/group-chat/${group.id}`)}
                 >
                   View
+                </button>
+                <button 
+                  className="copy-invite-btn"
+                  onClick={() => handleCopyInviteCode(group.invite_code)}
+                >
+                  Copy Invite Code
                 </button>
               </div>
             </div>
