@@ -1,26 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import StudyGroupModal from "../Modal/StudyGroupModal";
 import ReportIssues from "../ReportIssues/ReportIssues";
-import CreateStudyGroup from "../CreateStudyGroup/CreateStudyGroup";
-import JoinStudyGroup from "../JoinStudyGroup/JoinStudyGroup";
 import "./UserDashboard.css";
 
 function UserDashboard() {
   const navigate = useNavigate();
-  const [isStudyGroupModalOpen, setIsStudyGroupModalOpen] = useState(false);
   const [isReportIssuesModalOpen, setIsReportIssuesModalOpen] = useState(false);
-  const [isCreateStudyGroupModalOpen, setIsCreateStudyGroupModalOpen] = useState(false);
-  const [isJoinStudyGroupModalOpen, setIsJoinStudyGroupModalOpen] = useState(false);
-
-  const [username, setUsername] = useState(""); // For storing the username
+  const [username, setUsername] = useState("");
 
   useEffect(() => {
     const token = localStorage.getItem('token');
     const storedUsername = localStorage.getItem("username");
-
-    console.log("Token:", token);
-    console.log("Stored Username:", storedUsername);
 
     if (!token) {
       navigate("/signup");
@@ -32,14 +22,9 @@ function UserDashboard() {
   const handleSignOut = () => {
     if (window.confirm("Are you sure you want to sign out?")) {
       localStorage.removeItem("token");
-      localStorage.removeItem("username"); // Remove username on sign out
+      localStorage.removeItem("username");
       navigate("/signin");
     }
-  };
-
-  const handleStudyGroupClick = (e) => {
-    e.preventDefault();
-    setIsStudyGroupModalOpen(true);
   };
 
   const handleReportIssuesClick = (e) => {
@@ -47,29 +32,9 @@ function UserDashboard() {
     setIsReportIssuesModalOpen(true);
   };
 
-  const handleCreateGroup = () => {
-    setIsStudyGroupModalOpen(false);
-    setIsCreateStudyGroupModalOpen(true);
-  };
-
-  const handleJoinGroup = () => {
-    setIsStudyGroupModalOpen(false);
-    setIsJoinStudyGroupModalOpen(true);
-  };
-
   const handleSubmitReport = (reportData) => {
     console.log("Report Data:", reportData);
     setIsReportIssuesModalOpen(false);
-  };
-
-  const handleCreateStudyGroupSubmit = (groupData) => {
-    console.log("Study Group Created:", groupData);
-    setIsCreateStudyGroupModalOpen(false);
-  };
-
-  const handleJoinStudyGroupSuccess = (groupData) => {
-    console.log("Successfully joined:", groupData);
-    setIsJoinStudyGroupModalOpen(false);
   };
 
   return (
@@ -78,29 +43,25 @@ function UserDashboard() {
         <h2>Welcome, {username ? username : "User"}</h2>
       </header>
 
-      <nav className="sidebar">
-        <Link
-          to="/study-group"
-          className="sidebar-link"
-          onClick={handleStudyGroupClick}
-        >
+      <nav className="user-sidebar">
+        <Link to="/study-group" className="user-sidebar-link">
           <span className="link-icon">📚</span> Study Group
         </Link>
-        <Link to="/group-chat" className="sidebar-link">
+        <Link to="/group-chat" className="user-sidebar-link">
           <span className="link-icon">💬</span> Group Chat
         </Link>
-        <Link to="/share-files" className="sidebar-link">
+        <Link to="/share-files" className="user-sidebar-link">
           <span className="link-icon">📂</span> Share Files
         </Link>
-        <Link to="/view-files" className="sidebar-link">
+        <Link to="/view-files" className="user-sidebar-link">
           <span className="link-icon">👀</span> View Files
         </Link>
-        <Link to="/notifications" className="sidebar-link">
+        <Link to="/notifications" className="user-sidebar-link">
           <span className="link-icon">🔔</span> Notifications
         </Link>
         <Link
           to="/report-issues"
-          className="sidebar-link"
+          className="user-sidebar-link"
           onClick={handleReportIssuesClick}
         >
           <span className="link-icon">⚠️</span> Report Issues
@@ -115,39 +76,6 @@ function UserDashboard() {
         <h1>User Dashboard</h1>
         <p>Select an option from the menu to get started.</p>
       </main>
-
-      {/* Study Group Modal */}
-      {isStudyGroupModalOpen && (
-        <StudyGroupModal
-          onClose={() => setIsStudyGroupModalOpen(false)}
-          onCreateGroup={handleCreateGroup}
-          onJoinGroup={handleJoinGroup}
-        />
-      )}
-
-      {/* Create Study Group Modal */}
-      {isCreateStudyGroupModalOpen && (
-        <div className="modal-overlay">
-          <div className="modal-content">
-            <CreateStudyGroup
-              onSubmit={handleCreateStudyGroupSubmit}
-              onClose={() => setIsCreateStudyGroupModalOpen(false)}
-            />
-          </div>
-        </div>
-      )}
-
-      {/* Join Study Group Modal */}
-      {isJoinStudyGroupModalOpen && (
-        <div className="modal-overlay">
-          <div className="modal-content">
-            <JoinStudyGroup
-              onClose={() => setIsJoinStudyGroupModalOpen(false)}
-              onJoin={handleJoinStudyGroupSuccess}
-            />
-          </div>
-        </div>
-      )}
 
       {/* Report Issues Modal */}
       {isReportIssuesModalOpen && (

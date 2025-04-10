@@ -29,7 +29,7 @@ function AdminDashboard() {
       </header>
 
       {/* Sidebar */}
-      <nav className="sidebar">
+      <nav className="admin-sidebar">
         <Link 
           to="#" 
           className="sidebar-link" 

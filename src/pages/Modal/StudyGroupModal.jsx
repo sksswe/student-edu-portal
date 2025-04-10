@@ -1,23 +1,41 @@
-import React from 'react';
-import './StudyGroupModal.css'; // Import CSS from the same folder
+import React, { useState } from 'react';
+import './StudyGroupModal.css';
+import CreateStudyGroup from '../CreateStudyGroup/CreateStudyGroup';
+import JoinStudyGroup from '../JoinStudyGroup/JoinStudyGroup';
 
-function StudyGroupModal({ onClose, onCreateGroup, onJoinGroup }) {
+const StudyGroupModal = ({ onClose, onCreateGroup, onJoinGroup }) => {
+  const [activeTab, setActiveTab] = useState('create');
+
   return (
     <div className="modal-overlay">
       <div className="modal-content">
-        <h3>Study Group Options</h3>
-        <button onClick={onCreateGroup} className="modal-button">
-          Create a New Study Group
-        </button>
-        <button onClick={onJoinGroup} className="modal-button">
-          Join an Existing Study Group
-        </button>
-        <button onClick={onClose} className="modal-button close-button">
-          Close
-        </button>
+        <button className="close-btn" onClick={onClose}>×</button>
+        
+        <div className="tabs">
+          <button 
+            className={`tab-btn ${activeTab === 'create' ? 'active' : ''}`}
+            onClick={() => setActiveTab('create')}
+          >
+            Create Group
+          </button>
+          <button 
+            className={`tab-btn ${activeTab === 'join' ? 'active' : ''}`}
+            onClick={() => setActiveTab('join')}
+          >
+            Join Group
+          </button>
+        </div>
+
+        <div className="tab-content">
+          {activeTab === 'create' ? (
+            <CreateStudyGroup onCreate={onCreateGroup} />
+          ) : (
+            <JoinStudyGroup onJoin={onJoinGroup} />
+          )}
+        </div>
       </div>
     </div>
   );
-}
+};
 
 export default StudyGroupModal;

@@ -11,6 +11,8 @@ import ShareFiles from './pages/ShareFiles/ShareFiles';
 import StudyGroup from './pages/StudyGroup/StudyGroup';
 import Guidelines from './pages/Guidelines/Guidelines';
 import ProtectedRoute from './components/ProtectedRoute';
+import CreateStudyGroup from './pages/CreateStudyGroup/CreateStudyGroup'; // ✅ Import added here
+import JoinStudyGroup from './pages/JoinStudyGroup/JoinStudyGroup'; // ✅ Import added here
 
 function App() {
   return (
@@ -78,6 +80,22 @@ function App() {
           element={
             <ProtectedRoute role="user">
               <StudyGroup />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/create-study-group" // ✅ This is the missing route
+          element={
+            <ProtectedRoute role="user">
+              <CreateStudyGroup />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/join-study-group" // ✅ Add the route for joining a study group
+          element={
+            <ProtectedRoute role="user">
+              <JoinStudyGroup />
             </ProtectedRoute>
           }
         />

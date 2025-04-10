@@ -1,117 +1,272 @@
-import React, { useState, useEffect } from 'react';
+// import React, { useState } from 'react';
+// import { useNavigate } from 'react-router-dom';
+// import './JoinStudyGroup.css';  // Create corresponding CSS for styling
+
+// function JoinStudyGroup() {
+//   const [groupName, setGroupName] = useState('');
+//   const [password, setPassword] = useState('');
+//   const [error, setError] = useState('');
+//   const navigate = useNavigate();
+
+//   // Mock API call to check if group exists and password is correct
+//   const handleJoinGroup = (e) => {
+//     e.preventDefault();
+
+//     // Simulated validation
+//     if (groupName === '' || password === '') {
+//       setError('Please fill in both fields');
+//       return;
+//     }
+
+//     // Simulated check for correct group name and password
+//     if (groupName === 'Advanced Mathematics' && password === 'calculus123') {
+//       setError('');
+//       alert('Successfully joined the group!');
+//       navigate('/group-chat/1');  // Navigate to the group chat page after joining
+//     } else {
+//       setError('Incorrect group name or password');
+//     }
+//   };
+
+//   return (
+//     <div className="join-study-group-container">
+//       <div className="join-study-group-form">
+//         <h2>Join Study Group</h2>
+//         <form onSubmit={handleJoinGroup}>
+//           <div className="form-group">
+//             <label htmlFor="group-name">Group Name</label>
+//             <input
+//               type="text"
+//               id="group-name"
+//               value={groupName}
+//               onChange={(e) => setGroupName(e.target.value)}
+//               placeholder="Enter group name"
+//               required
+//             />
+//           </div>
+//           <div className="form-group">
+//             <label htmlFor="password">Password (if any)</label>
+//             <input
+//               type="password"
+//               id="password"
+//               value={password}
+//               onChange={(e) => setPassword(e.target.value)}
+//               placeholder="Enter password"
+//             />
+//           </div>
+//           {error && <p className="error-message">{error}</p>}
+//           <button type="submit" className="join-btn">Join Group</button>
+//         </form>
+//       </div>
+//     </div>
+//   );
+// }
+
+// export default JoinStudyGroup;
+
+
+
+//--------------------------------------------------------------------
+
+
+
+// import React, { useState } from 'react';
+// import './JoinStudyGroup.css';
+// import axios from 'axios';
+// import { useNavigate } from 'react-router-dom';
+
+// function JoinStudyGroup({ onClose }) {
+//   const [groupName, setGroupName] = useState('');
+//   const [password, setPassword] = useState('');
+//   const navigate = useNavigate();
+
+//   const handleJoin = async () => {
+//     if (!groupName.trim()) {
+//       alert('Group name is required');
+//       return;
+//     }
+
+//     try {
+//       // Replace with your API call to join a group
+//       await axios.post("http://127.0.0.1:8000/api/study/join-groupstudy/", {
+//         name: groupName,
+//         password: password || null,
+//       });
+//       alert('Joined the group successfully!');
+//       onClose();  // Close the modal after joining
+//       navigate('/study-group');
+//     } catch (error) {
+//       console.error('Error joining group:', error);
+//       alert('Failed to join the group. Please try again.');
+//     }
+//   };
+
+//   const handleCancel = () => {
+//     onClose(); // Close the modal without joining
+//   };
+
+//   return (
+//     <div className="join-group-container">
+//       <div className="popup">
+//         <h2>Join Study Group</h2>
+//         <label htmlFor="groupName">Group Name<span>*</span></label>
+//         <input
+//           type="text"
+//           id="groupName"
+//           placeholder="Enter group name"
+//           value={groupName}
+//           onChange={(e) => setGroupName(e.target.value)}
+//         />
+//         <label htmlFor="password">Password <small>(optional)</small></label>
+//         <input
+//           type="password"
+//           id="password"
+//           placeholder="Enter password (if any)"
+//           value={password}
+//           onChange={(e) => setPassword(e.target.value)}
+//         />
+//         <div className="join-buttons">
+//           <button className="join" onClick={handleJoin}>Join</button>
+//           <button className="cancel" onClick={handleCancel}>Cancel</button>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }
+
+// export default JoinStudyGroup;  
+
+
+
+//-------------------------------------------------------------------------------
+
+
+
+// import React, { useState } from 'react';
+// import './JoinStudyGroup.css';
+// import axios from 'axios';
+// import { useNavigate } from 'react-router-dom';
+
+// function JoinStudyGroup() {
+//   const [groupName, setGroupName] = useState('');
+//   const [password, setPassword] = useState('');
+//   const navigate = useNavigate();
+
+//   const handleJoin = async () => {
+//     if (!groupName.trim()) {
+//       alert('Group name is required');
+//       return;
+//     }
+
+//     try {
+//       // Replace with your API call to join a group
+//       await axios.post("http://127.0.0.1:8000/api/study/join-groupstudy/", {
+//         name: groupName,
+//         password: password || null,
+//       });
+//       alert('Joined the group successfully!');
+//       navigate('/study-group');  // Redirect to Study Groups page after joining
+//     } catch (error) {
+//       console.error('Error joining group:', error);
+//       alert('Failed to join the group. Please try again.');
+//     }
+//   };
+
+//   return (
+//     <div className="join-group-container">
+//       <div className="popup">
+//         <h2>Join Study Group</h2>
+//         <label htmlFor="groupName">Group Name<span>*</span></label>
+//         <input
+//           type="text"
+//           id="groupName"
+//           placeholder="Enter group name"
+//           value={groupName}
+//           onChange={(e) => setGroupName(e.target.value)}
+//         />
+//         <label htmlFor="password">Password <small>(optional)</small></label>
+//         <input
+//           type="password"
+//           id="password"
+//           placeholder="Enter password (if any)"
+//           value={password}
+//           onChange={(e) => setPassword(e.target.value)}
+//         />
+//         <div className="join-buttons">
+//           <button className="join" onClick={handleJoin}>Join</button>
+//           <button className="cancel" onClick={() => navigate('/study-group')}>Cancel</button>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }
+
+// export default JoinStudyGroup;
+
+
+
+//--------------------------------------------------------------------
+
+import React, { useState } from 'react';
 import './JoinStudyGroup.css';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
-function JoinStudyGroup({ onClose, onJoin }) {
-  const [studyGroups, setStudyGroups] = useState([]);
-  const [selectedGroup, setSelectedGroup] = useState(null);
+function JoinStudyGroup() {
+  const [inviteCode, setInviteCode] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() => {
-    const fetchStudyGroups = async () => {
-      try {
-        const response = await fetch('https://your-backend-api.com/study-groups');
-        if (!response.ok) throw new Error('Failed to fetch study groups');
-        const data = await response.json();
-        setStudyGroups(data);
-      } catch (error) {
-        console.error('Error fetching study groups:', error);
-        setError('Failed to load study groups. Please try again.');
-      }
-    };
-
-    fetchStudyGroups();
-  }, []);
-
-  const handleGroupSelect = (group) => {
-    setSelectedGroup(group);
-    setPassword('');
-    setError('');
-  };
+  const navigate = useNavigate();
 
   const handleJoin = async () => {
-    if (!password) {
-      setError('Please enter the group password');
+    if (!inviteCode.trim()) {
+      alert('Invite code is required');
       return;
     }
 
-    setIsLoading(true);
-    setError('');
-
     try {
-      const response = await fetch(`https://your-backend-api.com/study-groups/${selectedGroup.id}/join`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ password }),
+      // Replace with your API call to join a group using the invite code
+      await axios.post("http://127.0.0.1:8000/api/study/join-groupstudy/", {
+        inviteCode: inviteCode,
+        password: password || null,
       });
-
-      if (!response.ok) throw new Error('Failed to join study group');
-
-      const data = await response.json();
-      onJoin(data);
-      onClose();
+      alert('Joined the group successfully!');
+      navigate('/study-group');  // Redirect to Study Groups page after joining
     } catch (error) {
-      console.error('Error joining study group:', error);
-      setError('Invalid password or error joining group');
-    } finally {
-      setIsLoading(false);
+      console.error('Error joining group:', error);
+      alert('Failed to join the group. Please try again.');
     }
   };
 
   return (
-    <div className="join-study-group-modal">
-      <div className="modal-content">
-        <button className="close-button" onClick={onClose}>×</button>
-        <h2>Join a Study Group</h2>
-        
-        {!selectedGroup ? (
-          <div className="group-list">
-            <h3>Available Study Groups</h3>
-            {studyGroups.length === 0 ? (
-              <p>No study groups available</p>
-            ) : (
-              <ul>
-                {studyGroups.map((group) => (
-                  <li key={group.id} onClick={() => handleGroupSelect(group)}>
-                    {group.name}
-                  </li>
-                ))}
-              </ul>
-            )}
-            <div className="cancel-button-container">
-              <button className="cancel-button" onClick={onClose}>
-                Cancel
-              </button>
-            </div>
-          </div>
-        ) : (
-          <div className="password-prompt">
-            <h3>Join: {selectedGroup.name}</h3>
-            <div className="form-group">
-              <label>Password:</label>
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Enter group password"
-              />
-            </div>
-            {error && <p className="error-message">{error}</p>}
-            <div className="button-group">
-              <button onClick={() => setSelectedGroup(null)}>Back</button>
-              <button onClick={handleJoin} disabled={isLoading}>
-                {isLoading ? 'Joining...' : 'Join Group'}
-              </button>
-              <button className="cancel-button" onClick={onClose}>
-                Cancel
-              </button>
-            </div>
-          </div>
-        )}
+    <div className="join-group-container">
+      <div className="popup">
+        <h2>Join Study Group</h2>
+        <label htmlFor="inviteCode">Invite Code<span>*</span></label>
+        <input
+          type="text"
+          id="inviteCode"
+          placeholder="Enter invite code"
+          value={inviteCode}
+          onChange={(e) => setInviteCode(e.target.value)}
+        />
+        <label htmlFor="password">Password <small>(optional)</small></label>
+        <input
+          type="password"
+          id="password"
+          placeholder="Enter password (if any)"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <div className="join-buttons">
+          <button className="join" onClick={handleJoin}>Join</button>
+          <button className="cancel" onClick={() => navigate('/study-group')}>Cancel</button>
+        </div>
       </div>
     </div>
   );
 }
 
 export default JoinStudyGroup;
+
+
+
