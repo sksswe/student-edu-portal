@@ -179,23 +179,61 @@ const StudyGroupChat = () => {
     }
   };
 
+  // const handleFileUpload = async (e) => {
+  //   const token = localStorage.getItem('token');
+  //   const file = e.target.files[0];
+  //   if (!file) return;
+
+  //   const formData = new FormData();
+  //   formData.append('file', file);
+
+  //   try {
+  //     const response = await fetch(`http://127.0.0.1:8000/api/study/sendFile/`, {
+  //       method: 'POST',
+  //       headers: {
+  //         'Authorization': `Bearer ${token}`,
+  //       },
+  //       body: formData,
+  //     });
+
+  //     if (response.ok) {
+  //       const newMsg = await response.json();
+  //       const formatted = {
+  //         sender: username,
+  //         avatar: newMsg.avatar || null,
+  //         type: newMsg.file ? 'file' : 'text',
+  //         content: newMsg.file || newMsg.text,
+  //         timestamp: newMsg.timestamp,
+  //       };
+  //       setMessages(prev => [...prev, formatted]);
+  //     } else {
+  //       alert('Failed to upload file');
+  //     }
+  //   } catch (error) {
+  //     console.error('File upload error:', error);
+  //     alert('An error occurred while uploading the file');
+  //   }
+  // };
+
   const handleFileUpload = async (e) => {
     const token = localStorage.getItem('token');
     const file = e.target.files[0];
     if (!file) return;
-
+  
     const formData = new FormData();
     formData.append('file', file);
-
+    formData.append('group', id);
+    formData.append('sender', userId); // Make sure you're sending sender data if required
+  
     try {
-      const response = await fetch(`http://127.0.0.1:8000/api/study/group/${id}/upload-file/`, {
+      const response = await fetch(`http://127.0.0.1:8000/api/study/sendFile/`, {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${token}`,
+          'Authorization': `Bearer ${token}`, // You should include this for auth
         },
-        body: formData,
+        body: formData, // Don't set the Content-Type here, FormData will handle it
       });
-
+  
       if (response.ok) {
         const newMsg = await response.json();
         const formatted = {
@@ -214,6 +252,7 @@ const StudyGroupChat = () => {
       alert('An error occurred while uploading the file');
     }
   };
+  
 
   return (
     <div className="study-group-chat">
