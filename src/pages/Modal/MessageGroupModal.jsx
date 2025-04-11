@@ -9,7 +9,7 @@ const CreateGroupModal = ({ onClose }) => {
     try {
       const token = localStorage.getItem('token');
       await axios.post(
-        'http://127.0.0.1:8000/api/create-group/',
+        'http://127.0.0.1:8000/api/message/create-group/',
         { group_name: groupName },
         {
           headers: {
