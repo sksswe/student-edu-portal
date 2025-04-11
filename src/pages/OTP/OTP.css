@@ -1,68 +1,81 @@
-/* OTP Overlay */
+
+  /* OTP Overlay */
 .otp-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 1000; /* Ensure it's above other content */
-  }
-  
-  /* OTP Popup */
-  .otp-popup {
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    max-width: 400px;
-    width: 100%;
-    text-align: center;
-  }
-  
-  .otp-popup h2 {
-    font-size: 24px;
-    margin-bottom: 10px;
-  }
-  
-  .otp-popup p {
-    font-size: 16px;
-    margin-bottom: 20px;
-  }
-  
-  .otp-popup .form-control {
-    margin-bottom: 15px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    width: 100%;
-    font-size: 16px;
-  }
-  
-  .otp-popup .btn {
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .otp-popup .btn:hover {
-    background-color: #0056b3;
-  }
-  
-  .alert-danger {
-    color: #721c24;
-    background-color: #f8d7da;
-    border-color: #f5c6cb;
-    padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 15px;
-  }
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000; /* Ensure it's above other content */
+}
+
+/* OTP Popup */
+.otp-popup {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+}
+
+.otp-popup h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.otp-popup p {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+.otp-popup .form-control {
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+  font-size: 16px;
+}
+
+.otp-popup .btn {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.otp-popup .btn-primary {
+  background-color: #007bff;
+  color: white;
+}
+
+.otp-popup .btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.otp-popup .btn-secondary {
+  background-color: #6c757d;
+  color: white;
+}
+
+.otp-popup .btn-secondary:hover {
+  background-color: #1769a8;
+}
+
+.alert-danger {
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+}

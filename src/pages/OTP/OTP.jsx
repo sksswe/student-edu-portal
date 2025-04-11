@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
@@ -25,6 +26,15 @@ function OTP({ email }) {  // Get email from props
     }
   };
 
+  const handleResend = async () => {
+    try {
+      await axios.post('http://127.0.0.1:8000/api/resend-otp/', { email });
+      alert('OTP has been resent to your email.');
+    } catch (err) {
+      alert('Failed to resend OTP. Please try again.');
+    }
+  };
+
   return (
     <div className="otp-overlay">
       <div className="otp-popup">
@@ -41,6 +51,9 @@ function OTP({ email }) {  // Get email from props
         />
         <button className="btn btn-primary w-100" onClick={handleVerify}>
           Verify OTP
+        </button>
+        <button className="btn btn-secondary w-100 mt-2" onClick={handleResend}>
+          Resend OTP
         </button>
       </div>
     </div>
