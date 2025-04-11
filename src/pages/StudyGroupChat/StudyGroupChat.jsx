@@ -244,7 +244,9 @@ const StudyGroupChat = () => {
                   src={msg.avatar || 'https://cdn.pixabay.com/photo/2019/07/09/08/03/boy-4326461_1280.jpg'}
                   alt="avatar"
                 />
+                <strong>{msg.sender}</strong>
                 <span>{msg.timestamp ? new Date(msg.timestamp).toLocaleTimeString() : 'Just now'}</span>
+                
               </div>
               <div className="messageContent">
                 {msg.type === 'text' ? (
