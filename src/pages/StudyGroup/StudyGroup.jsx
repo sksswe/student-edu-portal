@@ -136,7 +136,7 @@ function StudyGroup() {
               <div className="group-actions">
                 <button 
                   className="view-btn"
-                  onClick={() => navigate(`/group-chat/${group.id}`)}
+                  onClick={() => navigate(`/study-group-chat/${group.id}`)}
                 >
                   View
                 </button>
