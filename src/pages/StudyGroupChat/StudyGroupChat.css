@@ -1,173 +1,187 @@
-
 /* Main chat container using flexbox for layout */                                         
 .study-group-chat {
-    display: flex;
-    height: 100vh;
-    width: 100%;
-  }
-  
-  /* Left Sidebar Styling */                                                                                                             
-  .sidebar {
-    width: 200px;
-    background: #2e3b4e;
-    color: white;
-    padding: 20px;
-    z-index: 10; /* Keep the sidebar above other elements */                                     
-  }
-  
-  
-  /* Main Chat Area Styling */                                                                  
-  .main-chat {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    margin-left: 250px; /* Leave space for the left sidebar */
-    margin-right: 200px; /* Leave space for the right sidebar */
-    overflow: hidden; /* Prevent overflow */
-    border: 3px solid #1f1d1d; /* Added border */
-  }
-    
-  
-  /* Group name header */                                                                                
-  .group-name-header {
-    background-color: #0078D4;
-    color: white;
-    padding: 10px;
-    text-align: center;
-  }
-  
-  /* Chat thread */                                                                                 
-  .chat-thread {
-    flex: 1;
-    background: #f4f4f4;
-    overflow-y: scroll;
-    padding: 10px;
-    margin-bottom: 10px;
-  }
-  
-  /* Message input area */                                                                        
-  .message-input {
-    display: flex;
-    background: #ddd;
-    padding: 10px;
-    align-items: center; /* Ensure input and buttons align properly */
-  }
-  
-  .message-input input {
-    flex: 1;
-    padding: 10px;
-    min-width: 500px; /* Made input box much longer */
-    height: 40px; /* Explicit height for input */
-    box-sizing: border-box; /* Include padding in height calculation */
-  }
-  
-  .message-input button {
-    margin-left: 5px;
-    padding: 0 10px; /* Reduced horizontal padding */
-    height: 40px; /* Matches input field height */
-    width: 60px; /* Fixed narrow width */
-    font-size: 12px; /* Smaller font to fit narrow width */
-    box-sizing: border-box; /* Include padding in width calculation */
-  }
-  
-  /* Right Sidebar Styling (User Info) */                                                                 
-  .user-info {
-    width: 200px;
-    background: #e3e3e3;
-    padding: 20px;
-    z-index: 5;
-    position: absolute; /* Fix the right sidebar position */                                              
-    right: 0;
-    top: 0;
-    bottom: 0;
-  }
-  
-  
+  display: flex;
+  height: 100vh;
+  width: 100%;
+}
 
+/* Left Sidebar Styling */                                                                                                             
+.sidebar {
+  width: 200px;
+  background: #2e3b4e;
+  color: white;
+  padding: 20px;
+  z-index: 10; /* Keep the sidebar above other elements */                                     
+}
 
-  
+/* Main Chat Area Styling */                                                                  
+.main-chat {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  margin-left: 250px; /* Leave space for the left sidebar */
+  margin-right: 200px; /* Leave space for the right sidebar */
+  overflow: hidden; /* Prevent overflow */
+  border: 3px solid #1f1d1d; /* Added border */
+}
 
-  .chat-message{
-    color: red;
-    font-size: 20px;
+/* Group name header */                                                                                
+.group-name-header {
+  background-color: #0078D4;
+  color: white;
+  padding: 10px;
+  text-align: center;
+}
+
+/* Chat thread */                                                                                 
+.chat-thread {
+  flex: 1;
+  background: #f4f4f4;
+  overflow-y: scroll;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+/* Message input area */                                                                        
+.message-input {
+  display: flex;
+  background: #ddd;
+  padding: 10px;
+  align-items: center; /* Ensure input and buttons align properly */
+}
+
+.message-input input {
+  flex: 1;
+  padding: 10px;
+  min-width: 500px; /* Made input box much longer */
+  height: 40px; /* Explicit height for input */
+  box-sizing: border-box; /* Include padding in height calculation */
+}
+
+.message-input button {
+  margin-left: 5px;
+  padding: 0 10px; /* Reduced horizontal padding */
+  height: 40px; /* Matches input field height */
+  width: 60px; /* Fixed narrow width */
+  font-size: 12px; /* Smaller font to fit narrow width */
+  box-sizing: border-box; /* Include padding in width calculation */
+}
+
+/* Right Sidebar Styling (User Info) */                                                                 
+.user-info {
+  width: 200px;
+  background-color: #3e3c61; /* Matches GroupChat.css sidebar */
+  color: wheat; /* Matches GroupChat text color */
+  padding: 10px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.user-info img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.user-info span {
+  font-size: 18px;
+  font-weight: 300;
+}
+
+.user-info p {
+  font-size: 14px;
+  color: lightgray;
+}
+
+.chat-message {
+  color: red;
+  font-size: 20px;
+}
+
+.chat-thread {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 10px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.message {
+  display: flex;
+  gap: 15px;
+  align-items: flex-start;
+}
+
+.message .messageInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 12px;
+  color: gray;
+}
+
+.message .messageInfo img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.message .messageContent {
+  max-width: 80%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.message .messageContent p,
+.message .messageContent a {
+  background-color: white;
+  padding: 10px 15px;
+  border-radius: 0px 10px 10px 10px;
+  font-size: 14px;
+  word-wrap: break-word;
+  max-width: 100%;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.message .messageContent img {
+  max-width: 300px;
+  max-height: 300px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.message.owner {
+  flex-direction: row-reverse;
+}
+
+.message.owner .messageContent {
+  align-items: flex-end;
+}
+
+.message.owner .messageContent p,
+.message.owner .messageContent a {
+  background-color: #a7bcff;
+  color: white;
+  border-radius: 10px 0px 10px 10px;
+}
+
+@media (max-width: 768px) {
+  .message .messageContent {
+      max-width: 100%;
   }
-  
-  .chat-thread {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    padding: 10px;
-    width: 100%;
-    box-sizing: border-box;
+
+  .message .messageContent img {
+      max-width: 100%;
+      height: auto;
   }
-  
-  .message {
-    display: flex;
-    gap: 15px;
-    align-items: flex-start;
-  
-    .messageInfo {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      font-size: 12px;
-      color: gray;
-  
-      img {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        object-fit: cover;
-      }
-    }
-  
-    .messageContent {
-      max-width: 80%;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-  
-      p, a {
-        background-color: white;
-        padding: 10px 15px;
-        border-radius: 0px 10px 10px 10px;
-        font-size: 14px;
-        word-wrap: break-word;
-        max-width: 100%;
-        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-      }
-  
-      img {
-        max-width: 300px;
-        max-height: 300px;
-        border-radius: 10px;
-        object-fit: cover;
-      }
-    }
-  
-    &.owner {
-      flex-direction: row-reverse;
-  
-      .messageContent {
-        align-items: flex-end;
-  
-        p, a {
-          background-color: #a7bcff;
-          color: white;
-          border-radius: 10px 0px 10px 10px;
-        }
-      }
-    }
-  
-    @media (max-width: 768px) {
-      .messageContent {
-        max-width: 100%;
-  
-        img {
-          max-width: 100%;
-          height: auto;
-        }
-      }
-    }
-  }
-  
+}
