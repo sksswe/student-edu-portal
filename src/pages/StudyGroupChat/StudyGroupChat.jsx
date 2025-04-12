@@ -280,7 +280,7 @@ const StudyGroupChat = () => {
             <div key={index} className={`message ${msg.sender === username ? 'owner' : ''}`}>
               <div className="messageInfo">
                 <img
-                  src={msg.avatar || 'https://cdn.pixabay.com/photo/2019/07/09/08/03/boy-4326461_1280.jpg'}
+                  src={msg.avatar || 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'}
                   alt="avatar"
                 />
                 <strong>{msg.sender}</strong>
