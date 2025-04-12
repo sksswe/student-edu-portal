@@ -50,9 +50,6 @@ function UserDashboard() {
         <Link to="/group-chat" className="user-sidebar-link">
           <span className="link-icon">💬</span> Group Chat
         </Link>
-        <Link to="/share-files" className="user-sidebar-link">
-          <span className="link-icon">📂</span> Share Files
-        </Link>
         <Link to="/view-files" className="user-sidebar-link">
           <span className="link-icon">👀</span> View Files
         </Link>
