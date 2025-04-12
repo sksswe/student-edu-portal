@@ -291,7 +291,7 @@ const StudyGroupChat = () => {
                 {msg.type === 'text' ? (
                   <p>{msg.content}</p>
                 ) : (
-                  <a href={msg.content} target="_blank" rel="noopener noreferrer">📁 File</a>
+                  <a href={msg.content} target="_blank" rel="noopener noreferrer">📁 {msg.content.split('/').pop()}</a>
                 )}
               </div>
             </div>
