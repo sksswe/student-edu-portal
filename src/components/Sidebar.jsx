@@ -1,23 +1,3 @@
-// import React from 'react'
-// import Navbar from './Navbar'
-// import Search from './Search'
-// import Chats from './Chats'
-
-// const Sidebar = () => {
-//   return (
-//     <div className='sidebars'>
-//         <Navbar/>
-//         <Search/>
-//         <Chats/>
-//         <div className="createGroupWrapper">
-//           <button className="createGroupBtn">Create GroupChat</button>
-//         </div>
-//     </div>
-    
-//   )
-// }
-
-// export default Sidebar
 
 import React, { useState } from 'react';
 import Navbar from './Navbar';
