@@ -49,9 +49,9 @@
   gap: 15px;
   width: 100%;
   max-width: 800px;
-  max-height: 65vh; /* Set max height */
-  overflow-y: auto;  /* Enable vertical scroll */
-  padding-right: 5px; /* Optional: add space for scrollbar */
+  max-height: 65vh; 
+  overflow-y: auto;  
+  padding-right: 5px; 
 }
 
 .file-item {
@@ -119,7 +119,7 @@
   background-color: #218838;
 }
 
-/* ✅ Make "View Files" link green */
+
 .viewfiles-link {
   color: green !important;
 }

@@ -1,68 +1,68 @@
-/* Reset default margin and padding to avoid unwanted spacing */
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* Style the sign-in container to be full viewport */
+
 .signin-container {
   display: flex;
-  height: 100vh; /* Full viewport height */
-  width: 100vw; /* Full viewport width */
-  overflow: hidden; /* Prevent scrolling */
+  height: 100vh; 
+  width: 100vw; 
+  overflow: hidden; 
 }
 
-/* Style the left section with the image */
+
 .signin-left {
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden; /* Ensure the image doesn't overflow */
+  overflow: hidden; 
 }
 
 .signin-image {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Ensures the image covers the entire div */
+  object-fit: cover; 
 }
 
-/* Style the right section with the form */
+
 .signin-right {
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: #f8f9fa;
-  padding: 20px; /* Add some padding for better spacing */
+  padding: 20px; 
 }
 
-/* Style the content within the form section */
+
 .signin-content {
   max-width: 400px;
   width: 100%;
   text-align: center;
-  padding: 20px; /* Add some padding for better spacing */
+  padding: 20px; 
 }
 
-/* Style the heading */
+
 .signin-content h1 {
   font-size: 24px;
   margin-bottom: 20px;
   color: #333333;
 }
 
-/* Style the paragraph */
+
 .signin-content p {
   font-size: 16px;
   margin-bottom: 20px;
   color: #666666;
 }
 
-/* Style the form controls */
+
 .signin-content .form-control {
-  margin-bottom: 15px; /* Adjusted spacing */
+  margin-bottom: 15px; 
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
@@ -75,7 +75,7 @@
   outline: none;
 }
 
-/* Style the role selection */
+
 .role-selection {
   display: flex;
   gap: 10px;
@@ -89,7 +89,7 @@
   gap: 5px;
 }
 
-/* Style the sign-in button */
+
 .signin-content .btn {
   width: 100%;
   padding: 10px;
@@ -106,13 +106,13 @@
   background-color: #0056b3;
 }
 
-/* Style the footer */
+
 .signin-footer {
   margin-top: 20px;
   text-align: left;
 }
 
-/* Style the footer links */
+
 .signin-footer p,
 .signin-footer a {
   color: #007bff;

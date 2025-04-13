@@ -40,7 +40,7 @@ html, body {
 
 /* Ensure the container takes up the full viewport dynamically */
 .home-container {
-    background: url('https://media.istockphoto.com/id/1365149156/photo/woman-designer-working-from-home-having-meeting-online-student-girl-studying-in-her-room.jpg?s=1024x1024&w=is&k=20&c=W63JPFfTPT4pfbw5hc9OQDTmsnyW3vIcSLdwjFjQSaU=') no-repeat center center fixed;
+    background: url('/homepageistockphoto-1365149156-1024x1024.jpg') no-repeat center center fixed;
     background-size: cover;
     height: 100vh; /* Full viewport height */
     width: 100vw; /* Full viewport width */

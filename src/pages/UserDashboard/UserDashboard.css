@@ -6,7 +6,7 @@
   background-color: #f5f6fa;
 }
 
-/* Header */
+
 .header {
   position: fixed;
   top: 0;
@@ -28,31 +28,31 @@
   font-weight: 600;
 }
 
-/* Sidebar */
+
 .user-sidebar {
   position: fixed;
   top: 60px;
   left: 0;
   width: 300px;
   height: calc(100vh - 60px);
-  background-color: #34495e; /* Changed to darker shade */
-  padding: 30px; /* Increased padding */
+  background-color: #34495e; 
+  padding: 30px; 
   display: flex;
   flex-direction: column;
   box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
-  z-index: 10; /* Increased z-index */
+  z-index: 10; 
 }
 
 .user-sidebar-link {
-  margin-bottom: 20px; /* Increased margin for spacing */
-  padding: 15px 20px; /* Increased padding */
+  margin-bottom: 20px; 
+  padding: 15px 20px; 
   text-decoration: none;
   color: #ecf0f1;
-  border-radius: 8px; /* Slightly rounded edges */
+  border-radius: 8px; 
   display: flex;
   align-items: center;
   transition: background-color 0.3s ease, transform 0.2s ease;
-  font-size: 18px; /* Increased font size */
+  font-size: 18px; 
 }
 
 .user-sidebar-link:hover {
@@ -61,19 +61,19 @@
 }
 
 .link-icon {
-  margin-right: 15px; /* Increased space between icon and text */
-  font-size: 22px; /* Increased icon size */
+  margin-right: 15px; 
+  font-size: 22px; 
 }
 
-/* Sign Out Button */
+
 .signout-button {
   background-color: #e74c3c;
   color: white;
   border: none;
-  padding: 12px 20px; /* Increased padding */
-  border-radius: 8px; /* Slightly rounded edges */
+  padding: 12px 20px; 
+  border-radius: 8px; 
   cursor: pointer;
-  font-size: 16px; /* Increased font size */
+  font-size: 16px; 
   transition: background-color 0.3s ease;
   margin-top: auto;
   width: 100%;
@@ -84,7 +84,7 @@
   background-color: #c0392b;
 }
 
-/* Main Content */
+
 .user-main-content {
   margin-left: 300px;
   margin-top: 60px;
@@ -92,7 +92,7 @@
   width: calc(100vw - 300px);
   min-height: calc(100vh - 60px);
   background-color: #ffffff;
-  background-image: url('https://images.unsplash.com/photo-1501504905252-473c47e087f8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80') !important;
+  background-image: url('/photo-1501504905252-473c47e087f8.avif') !important;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -157,7 +157,7 @@
   position: relative;
 }
 
-/* Responsive Design */
+
 @media (max-width: 768px) {
   .sidebar {
     width: 100%;

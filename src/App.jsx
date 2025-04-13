@@ -16,7 +16,7 @@ import CreateStudyGroup from './pages/CreateStudyGroup/CreateStudyGroup';
 import JoinStudyGroup from './pages/JoinStudyGroup/JoinStudyGroup';
 import GroupChat from './pages/GroupChat/GroupChat';
 import StudyGroupChat from './pages/StudyGroupChat/StudyGroupChat';
-import ViewFiles from './pages/ViewFiles/ViewFiles'; // 👈 Import ViewFiles
+import ViewFiles from './pages/ViewFiles/ViewFiles'; 
 
 function App() {
   return (
