@@ -40,7 +40,7 @@ html, body {
 
 /* Ensure the container takes up the full viewport dynamically */
 .home-container {
-    background: url('/homepageistockphoto-1365149156-1024x1024.jpg') no-repeat center center fixed;
+    background: url('https://cdn.pixabay.com/photo/2015/09/22/15/02/studying-951818_1280.jpg') no-repeat center center fixed;
     background-size: cover;
     height: 100vh; /* Full viewport height */
     width: 100vw; /* Full viewport width */
